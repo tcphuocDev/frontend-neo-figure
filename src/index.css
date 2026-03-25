@@ -1,0 +1,78 @@
+@import "tailwindcss";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    "Roboto",
+    "Oxygen",
+    "Ubuntu",
+    "Cantarell",
+    "Fira Sans",
+    "Droid Sans",
+    "Helvetica Neue",
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #0f0f0f;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar - Gaming aesthetic */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #0f0f0f;
+  border-left: 1px solid #2a2a2a;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #00f5ff 0%, #0088ff 100%);
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #00f5ff 0%, #00aaff 100%);
+}
+
+/* Smooth transitions */
+* {
+  transition-property:
+    background-color, border-color, color, transform, box-shadow;
+  transition-duration: 0.3s;
+  transition-timing-function: ease;
+}
+
+/* Disable transition for theme changes */
+.no-transition * {
+  transition: none !important;
+}
+
+/* Selection color */
+::selection {
+  background-color: #00f5ff;
+  color: #0f0f0f;
+}
+
+::-moz-selection {
+  background-color: #00f5ff;
+  color: #0f0f0f;
+}
+
+/* Focus visible for accessibility */
+*:focus-visible {
+  outline: 2px solid #00f5ff;
+  outline-offset: 2px;
+}
