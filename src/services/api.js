@@ -1,7 +1,9 @@
 import axios from "axios";
 
 export const api = axios.create({
-  baseURL: "http://10.1.56.60:3009",
+  // baseURL: "http://10.1.56.60:3009",
+  baseURL: import.meta.env.VITE_API_URL,
+
 });
 
 // Products
