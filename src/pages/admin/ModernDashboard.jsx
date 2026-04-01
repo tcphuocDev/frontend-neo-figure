@@ -145,24 +145,24 @@ const ModernDashboard = () => {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-md">
       {/* Page Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-text-primary dark:text-white mb-1">
+          <h1 className="text-heading-lg font-bold text-text-primary dark:text-white mb-xs">
             Dashboard Overview
           </h1>
           <p className="text-text-secondary dark:text-gray-400">
             Welcome back! Here's what's happening with your store today.
           </p>
         </div>
-        <button className="px-4 py-2.5 bg-primary hover:bg-primary-hover text-white rounded-lg transition-all duration-200 font-medium shadow-md hover:shadow-lg">
+        <button className="px-md py-sm bg-primary hover:bg-primary-hover text-white rounded-lg transition-all duration-200 font-medium shadow-md hover:shadow-lg">
           Download Report
         </button>
       </div>
 
       {/* Stats Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md">
         <StatCard
           title="Total Users"
           value={stats.totalUsers.toLocaleString()}
@@ -198,17 +198,17 @@ const ModernDashboard = () => {
       </div>
 
       {/* Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-md">
         <RevenueChart data={revenueData} />
         <OrdersChart data={ordersData} />
       </div>
 
       {/* Table and Activity Feed */}
-      <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-md\">
         {/* Recent Orders Table */}
-        <div className="xl:col-span-2">
-          <div className="mb-4">
-            <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-1">
+        <div className="xl:col-span-2\">
+          <div className="mb-sm\">
+            <h2 className=\"text-heading-md font-bold text-gray-900 dark:text-white mb-xs\">
               Recent Orders
             </h2>
             <p className="text-sm text-gray-600 dark:text-gray-400">
@@ -224,21 +224,21 @@ const ModernDashboard = () => {
         </div>
 
         {/* Activity Feed */}
-        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
-          <div className="flex items-center gap-3 mb-6">
-            <div className="p-2 bg-cyan-500/10 rounded-lg">
+        <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-md">
+          <div className="flex items-center gap-sm mb-md">
+            <div className="p-sm bg-cyan-500/10 rounded-lg">
               <Activity className="w-5 h-5 text-cyan-500" />
             </div>
             <div>
-              <h3 className="text-lg font-semibold text-gray-900 dark:text-white">
+              <h3 className="text-heading-sm font-semibold text-gray-900 dark:text-white">
                 Recent Activity
               </h3>
-              <p className="text-sm text-gray-600 dark:text-gray-400">
+              <p className="text-body text-gray-600 dark:text-gray-400">
                 Latest activities in your store
               </p>
             </div>
           </div>
-          <div className="space-y-4">
+          <div className="space-y-sm">
             {[
               {
                 action: 'New order placed',
@@ -267,20 +267,20 @@ const ModernDashboard = () => {
             ].map((activity, index) => (
               <div
                 key={index}
-                className="flex items-center gap-4 pb-4 border-b border-gray-100 dark:border-gray-800 last:border-0 last:pb-0"
+                className="flex items-center gap-sm pb-sm border-b border-gray-100 dark:border-gray-800 last:border-0 last:pb-0"
               >
                 <div
                   className={`w-2 h-2 rounded-full bg-${activity.color}-500`}
                 />
                 <div className="flex-1">
-                  <p className="text-sm font-medium text-gray-900 dark:text-white">
+                  <p className="text-body font-medium text-gray-900 dark:text-white">
                     {activity.action}
                   </p>
-                  <p className="text-xs text-gray-600 dark:text-gray-400">
+                  <p className="text-small-text text-gray-600 dark:text-gray-400">
                     by {activity.user}
                   </p>
                 </div>
-                <span className="text-xs text-gray-500 dark:text-gray-400">
+                <span className="text-small-text text-gray-500 dark:text-gray-400">
                   {activity.time}
                 </span>
               </div>

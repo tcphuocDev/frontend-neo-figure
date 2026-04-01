@@ -153,15 +153,15 @@ export default function AdminDashboard() {
   }
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-md">
       {/* HEADER */}
-      <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 p-6 rounded-xl border border-[#2a2a2a]">
-        <h1 className="text-2xl font-bold text-white">Welcome Admin 👋</h1>
+      <div className="bg-gradient-to-r from-blue-600/20 to-purple-600/20 p-md rounded-xl border border-[#2a2a2a]">
+        <h1 className="text-heading-lg font-bold text-white">Welcome Admin 👋</h1>
         <p className="text-gray-400">Manage your store dashboard</p>
       </div>
 
       {/* STATS */}
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-md">
         {statCards.map((stat) => {
           const Icon = stat.icon;
           const colors = colorClasses[stat.color];
@@ -170,18 +170,18 @@ export default function AdminDashboard() {
             <Link
               key={stat.title}
               to={stat.link}
-              className="bg-[#121212] p-6 rounded-xl border border-[#2a2a2a] hover:border-blue-500/40 transition-all hover:-translate-y-1"
+              className="bg-[#121212] p-md rounded-xl border border-[#2a2a2a] hover:border-blue-500/40 transition-all hover:-translate-y-1"
             >
-              <div className="flex justify-between items-center mb-4">
+              <div className="flex justify-between items-center mb-md">
                 <div
                   className={`w-12 h-12 rounded-lg ${colors.bg} flex items-center justify-center`}
                 >
-                  <Icon className={`w-6 h-6 ${colors.text}`} />
+                  <Icon className={`w-5 h-5 ${colors.text}`} />
                 </div>
               </div>
 
-              <p className="text-gray-400 text-sm">{stat.title}</p>
-              <h2 className="text-white text-2xl font-bold mt-1">
+              <p className="text-gray-400 text-body">{stat.title}</p>
+              <h2 className="text-white text-heading-md font-bold mt-xs">
                 {stat.value}
               </h2>
             </Link>
@@ -190,10 +190,10 @@ export default function AdminDashboard() {
       </div>
 
       {/* CHARTS */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-md">
         {/* REVENUE */}
-        <div className="bg-[#121212] p-6 rounded-xl border border-[#2a2a2a]">
-          <h3 className="text-white font-semibold mb-4">Revenue (7 days)</h3>
+        <div className="bg-[#121212] p-md rounded-xl border border-[#2a2a2a]">
+          <h3 className="text-white font-semibold mb-md">Revenue (7 days)</h3>
 
           <ResponsiveContainer width="100%" height={250}>
             <LineChart data={revenueChart}>

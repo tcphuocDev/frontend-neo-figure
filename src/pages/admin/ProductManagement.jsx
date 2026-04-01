@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Search, Plus, Edit, Trash2, Eye, Filter, Download } from 'lucide-react';
+import { Plus, Edit, Trash2, Eye, Filter, Download } from 'lucide-react';
 import { getProducts } from '../../services/api';
 import { adminApi } from '../../services/adminApi';
 import ProductDetailModal from '../../components/admin/ProductDetailModal';
@@ -77,16 +77,16 @@ export default function ProductManagement() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-md">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-white">Product Management</h2>
-          <p className="text-text-secondary mt-1">Manage your product inventory</p>
+          <h2 className="text-heading-lg font-bold text-white">Product Management</h2>
+          <p className="text-text-secondary mt-xs">Manage your product inventory</p>
         </div>
         <Link
           to="/admin/products/new"
-          className="flex items-center space-x-2 px-4 py-2 bg-primary text-dark font-bold rounded-lg hover:bg-primary/90 transition-colors"
+          className="flex items-center gap-sm px-md py-sm bg-primary text-dark font-bold rounded-lg hover:bg-primary/90 transition-colors"
         >
           <Plus className="w-5 h-5" />
           <span>Add Product</span>
@@ -94,20 +94,17 @@ export default function ProductManagement() {
       </div>
 
       {/* Search & Filters */}
-      <div className="bg-dark-card p-4 rounded-lg border border-[#2a2a2a]">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
-          <div className="md:col-span-2">
-            <div className="relative">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-secondary" />
-              <input
-                type="text"
-                placeholder="Search products..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
-                className="w-full pl-10 pr-4 py-2 bg-dark border border-[#2a2a2a] rounded-lg text-white focus:border-primary focus:outline-none"
-              />
-            </div>
+      <div className="bg-dark-card p-md rounded-lg border border-[#2a2a2a]">
+        <div className="grid grid-cols-1 md:grid-cols-5 gap-md">
+          <div className="md:col-span-3">
+            <input
+              type="text"
+              placeholder="Search products..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+              className="w-full px-4 py-2 bg-dark border border-[#2a2a2a] rounded-lg text-white focus:border-primary focus:outline-none"
+            />
           </div>
 
           <select

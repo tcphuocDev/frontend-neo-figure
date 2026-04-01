@@ -14,7 +14,7 @@ const QuickAction = ({ icon: Icon, label, description, color, onClick }) => {
       whileHover={{ y: -4, scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       onClick={onClick}
-      className="group relative bg-white dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-100 dark:border-gray-700/50 hover:border-gray-200 dark:hover:border-gray-600 hover:shadow-xl hover:shadow-gray-200/50 dark:hover:shadow-gray-900/50 transition-all duration-300 text-left overflow-hidden"
+      className="group relative bg-white dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl p-sm border border-gray-100 dark:border-gray-700/50 hover:border-gray-200 dark:hover:border-gray-600 hover:shadow-xl hover:shadow-gray-200/50 dark:hover:shadow-gray-900/50 transition-all duration-300 text-left overflow-hidden"
     >
       {/* Gradient background on hover */}
       <div
@@ -79,7 +79,7 @@ const QuickActions = () => {
 
   return (
     <div>
-      <div className="mb-6">
+      <div className="mb-sm">
         <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">Quick Actions</h3>
         <p className="text-sm text-gray-600 dark:text-gray-400">
           Frequently used actions at your fingertips

@@ -36,14 +36,14 @@ const StatCard = ({
 
   return (
     <div className="bg-background-card dark:bg-gray-800 rounded-xl shadow-sm hover:shadow-lg transition-all duration-300 overflow-hidden border border-border dark:border-gray-700">
-      <div className="p-6">
-        <div className="flex items-center justify-between mb-4">
-          <div className={`p-3 rounded-lg ${bgColors[color]}`}>
-            <IconComponent className={`w-6 h-6 ${iconColors[color]}`} />
+      <div className="p-md">
+        <div className="flex items-center justify-between mb-md">
+          <div className={`p-sm rounded-lg ${bgColors[color]}`}>
+            <IconComponent className={`w-5 h-5 ${iconColors[color]}`} />
           </div>
           {change && (
             <div
-              className={`flex items-center gap-1 text-sm font-medium ${
+              className={`flex items-center gap-xs text-body font-medium ${
                 trend === 'up' ? 'text-success' : 'text-error'
               }`}
             >

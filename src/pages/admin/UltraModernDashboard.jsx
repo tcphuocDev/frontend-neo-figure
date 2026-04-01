@@ -229,26 +229,26 @@ const UltraModernDashboard = () => {
   ];
 
   return (
-    <div className="min-h-screen space-y-8">
+    <div className="min-h-screen space-y-6">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"
+        className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-sm"
       >
         <div>
-          <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-2">Dashboard</h1>
-          <p className="text-gray-600 dark:text-gray-400 flex items-center gap-2">
+          <h1 className="text-heading-lg font-bold text-gray-900 dark:text-white mb-xs">Dashboard</h1>
+          <p className="text-body text-gray-600 dark:text-gray-400 flex items-center gap-xs">
             <Calendar className="w-4 h-4" />
             <span>Welcome back! Here's what's happening today.</span>
           </p>
         </div>
-        <div className="flex items-center gap-3">
-          <button className="px-4 py-2 bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-sm font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex items-center gap-2">
+        <div className="flex items-center gap-sm">
+          <button className="px-md py-sm bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl text-body font-medium text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors flex items-center gap-sm">
             <Clock className="w-4 h-4" />
             Last 7 days
           </button>
-          <button className="px-4 py-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl text-sm font-medium shadow-lg shadow-blue-500/30 transition-all flex items-center gap-2">
+          <button className="px-md py-sm bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white rounded-xl text-body font-medium shadow-lg shadow-blue-500/30 transition-all flex items-center gap-sm">
             <TrendingUp className="w-4 h-4" />
             View Report
           </button>
@@ -260,7 +260,7 @@ const UltraModernDashboard = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.1 }}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-sm"
       >
         {stats.map((stat, index) => (
           <ModernStatCard key={index} {...stat} />
@@ -281,7 +281,7 @@ const UltraModernDashboard = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="grid grid-cols-1 lg:grid-cols-3 gap-6"
+        className="grid grid-cols-1 lg:grid-cols-3 gap-sm"
       >
         {/* Recent Activity - Takes 1 column */}
         <div className="lg:col-span-1">
@@ -290,17 +290,17 @@ const UltraModernDashboard = () => {
 
         {/* Charts placeholder - Takes 2 columns */}
         <div className="lg:col-span-2">
-          <div className="bg-white dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-100 dark:border-gray-700/50 p-6 h-full">
-            <div className="flex items-center justify-between mb-6">
+          <div className="bg-white dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-100 dark:border-gray-700/50 p-sm h-full">
+            <div className="flex items-center justify-between mb-sm">
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                <h3 className="text-heading-sm font-semibold text-gray-900 dark:text-white mb-xs\">
                   Revenue Overview
                 </h3>
-                <p className="text-sm text-gray-600 dark:text-gray-400">
+                <p className="text-body text-gray-600 dark:text-gray-400\">
                   Sales performance over time
                 </p>
               </div>
-              <select className="px-3 py-2 bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
+              <select className="px-sm py-sm bg-gray-50 dark:bg-gray-900/50 border border-gray-200 dark:border-gray-700 rounded-xl text-body focus:outline-none focus:ring-2 focus:ring-blue-500">
                 <option>Last 7 days</option>
                 <option>Last 30 days</option>
                 <option>Last 3 months</option>
@@ -309,9 +309,9 @@ const UltraModernDashboard = () => {
             <div className="h-80 flex items-center justify-center text-gray-400 dark:text-gray-600">
               {/* Chart component would go here */}
               <div className="text-center">
-                <TrendingUp className="w-16 h-16 mx-auto mb-4 opacity-50" />
-                <p className="text-sm">Chart visualization</p>
-                <p className="text-xs mt-1">Install recharts to see the chart</p>
+                <TrendingUp className="w-16 h-16 mx-auto mb-sm opacity-50" />
+                <p className="text-body">Chart visualization</p>
+                <p className="text-small-text mt-xs">Install recharts to see the chart</p>
               </div>
             </div>
           </div>
@@ -324,8 +324,8 @@ const UltraModernDashboard = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
       >
-        <div className="mb-6">
-          <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+        <div className="mb-sm">
+          <h3 className="text-heading-sm font-semibold text-gray-900 dark:text-white mb-xs">
             Recent Orders
           </h3>
           <p className="text-sm text-gray-600 dark:text-gray-400">

@@ -117,17 +117,17 @@ export default function Checkout() {
     return (
       <div className="min-h-screen bg-dark">
         <Header />
-        <div className="max-w-14xl mx-auto px-4 py-16 text-center">
-          <Package className="w-20 h-20 text-text-muted mx-auto mb-3" />
-          <h2 className="text-xl font-bold text-white mb-2">
+        <div className="max-w-14xl mx-auto px-md py-md text-center">
+          <Package className="w-20 h-20 text-text-muted mx-auto mb-md" />
+          <h2 className="text-heading-lg font-bold text-white mb-sm">
             Your cart is empty
           </h2>
-          <p className="text-text-secondary mb-5 text-sm">
+          <p className="text-text-secondary mb-md text-body">
             Add some products before checkout
           </p>
           <Link
             to="/products"
-            className="inline-block bg-primary hover:bg-primary/90 text-dark font-bold px-6 py-2.5 rounded-lg transition-all"
+            className="inline-block bg-primary hover:bg-primary/90 text-dark font-bold px-md py-sm rounded-lg transition-all"
           >
             Continue Shopping
           </Link>
@@ -141,41 +141,41 @@ export default function Checkout() {
     <div className="min-h-screen bg-dark">
       <Header />
 
-      <div className="max-w-14xl mx-auto px-4 py-6">
+      <div className="max-w-14xl mx-auto px-md py-md">
         {/* Breadcrumb - Compact */}
-        <div className="text-xs text-text-secondary mb-4">
+        <div className="text-small-text text-text-secondary mb-md">
           <Link to="/" className="hover:text-primary">
             Home
           </Link>
-          <span className="mx-2">/</span>
+          <span className="mx-sm">/</span>
           <Link to="/cart" className="hover:text-primary">
             Cart
           </Link>
-          <span className="mx-2">/</span>
+          <span className="mx-sm">/</span>
           <span className="text-white">Checkout</span>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-md">
           {/* Checkout Form */}
           <div className="lg:col-span-2">
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="bg-dark-card border border-[#2a2a2a] rounded-lg p-5"
+              className="bg-dark-card border border-[#2a2a2a] rounded-lg p-md"
             >
-              <h1 className="text-xl font-bold text-white mb-5">Checkout</h1>
+              <h1 className="text-heading-lg font-bold text-white mb-md">Checkout</h1>
 
-              <form onSubmit={handleSubmit} className="space-y-5">
+              <form onSubmit={handleSubmit} className="gap-md flex flex-col">
                 {/* Customer Information */}
                 <div>
-                  <h2 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
-                    <User className="w-4 h-4 text-primary" />
+                  <h2 className="text-heading-sm font-semibold text-white mb-md flex items-center gap-sm">
+                    <User className="w-4 h-4 text-primary flex-shrink-0" />
                     Customer Information
                   </h2>
 
-                  <div className="space-y-3">
+                  <div className="gap-sm flex flex-col">
                     <div>
-                      <label className="block text-xs font-medium text-text-secondary mb-1.5">
+                      <label className="block text-small-text font-medium text-text-secondary mb-xs">
                         Full Name *
                       </label>
                       <input
@@ -183,7 +183,7 @@ export default function Checkout() {
                         name="customerName"
                         value={formData.customerName}
                         onChange={handleChange}
-                        className={`w-full px-3 py-2.5 bg-dark border rounded-lg text-white text-sm outline-none focus:ring-2 transition-all ${
+                        className={`w-full px-sm py-sm bg-dark border rounded-lg text-white text-body outline-none focus:ring-2 transition-all ${
                           errors.customerName
                             ? "border-secondary focus:ring-secondary/50"
                             : "border-[#2a2a2a] focus:border-primary focus:ring-primary/50"
@@ -191,25 +191,25 @@ export default function Checkout() {
                         placeholder="Enter your full name"
                       />
                       {errors.customerName && (
-                        <p className="text-secondary text-xs mt-1">
+                        <p className="text-secondary text-small-text mt-xs">
                           {errors.customerName}
                         </p>
                       )}
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-sm">
                       <div>
-                        <label className="block text-xs font-medium text-text-secondary mb-1.5">
+                        <label className="block text-small-text font-medium text-text-secondary mb-xs">
                           Phone Number *
                         </label>
                         <div className="relative">
-                          <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary" />
+                          <Phone className="absolute left-md top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary flex-shrink-0" />
                           <input
                             type="tel"
                             name="phone"
                             value={formData.phone}
                             onChange={handleChange}
-                            className={`w-full pl-10 pr-3 py-2.5 bg-dark border rounded-lg text-white text-sm outline-none focus:ring-2 transition-all ${
+                            className={`w-full pl-14 pr-sm py-sm bg-dark border rounded-lg text-white text-body outline-none focus:ring-2 transition-all ${
                               errors.phone
                                 ? "border-secondary focus:ring-secondary/50"
                                 : "border-[#2a2a2a] focus:border-primary focus:ring-primary/50"
@@ -218,24 +218,24 @@ export default function Checkout() {
                           />
                         </div>
                         {errors.phone && (
-                          <p className="text-secondary text-xs mt-1">
+                          <p className="text-secondary text-small-text mt-xs">
                             {errors.phone}
                           </p>
                         )}
                       </div>
 
                       <div>
-                        <label className="block text-xs font-medium text-text-secondary mb-1.5">
+                        <label className="block text-small-text font-medium text-text-secondary mb-xs">
                           Email (Optional)
                         </label>
                         <div className="relative">
-                          <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary" />
+                          <Mail className="absolute left-md top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary flex-shrink-0" />
                           <input
                             type="email"
                             name="email"
                             value={formData.email}
                             onChange={handleChange}
-                            className={`w-full pl-10 pr-3 py-2.5 bg-dark border rounded-lg text-white text-sm outline-none focus:ring-2 transition-all ${
+                            className={`w-full pl-14 pr-sm py-sm bg-dark border rounded-lg text-white text-body outline-none focus:ring-2 transition-all ${
                               errors.email
                                 ? "border-secondary focus:ring-secondary/50"
                                 : "border-[#2a2a2a] focus:border-primary focus:ring-primary/50"
@@ -244,7 +244,7 @@ export default function Checkout() {
                           />
                         </div>
                         {errors.email && (
-                          <p className="text-secondary text-xs mt-1">
+                          <p className="text-secondary text-small-text mt-xs">
                             {errors.email}
                           </p>
                         )}
@@ -255,13 +255,13 @@ export default function Checkout() {
 
                 {/* Shipping Address */}
                 <div>
-                  <h2 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
-                    <MapPin className="w-4 h-4 text-primary" />
+                  <h2 className="text-heading-sm font-semibold text-white mb-md flex items-center gap-sm">
+                    <MapPin className="w-4 h-4 text-primary flex-shrink-0" />
                     Shipping Address
                   </h2>
 
                   <div>
-                    <label className="block text-xs font-medium text-text-secondary mb-1.5">
+                    <label className="block text-small-text font-medium text-text-secondary mb-xs">
                       Full Address *
                     </label>
                     <textarea
@@ -269,7 +269,7 @@ export default function Checkout() {
                       value={formData.address}
                       onChange={handleChange}
                       rows="3"
-                      className={`w-full px-3 py-2.5 bg-dark border rounded-lg text-white text-sm outline-none focus:ring-2 transition-all resize-none ${
+                      className={`w-full px-sm py-sm bg-dark border rounded-lg text-white text-body outline-none focus:ring-2 transition-all resize-none ${
                         errors.address
                           ? "border-secondary focus:ring-secondary/50"
                           : "border-[#2a2a2a] focus:border-primary focus:ring-primary/50"
@@ -277,7 +277,7 @@ export default function Checkout() {
                       placeholder="Street address, city, district, ward..."
                     />
                     {errors.address && (
-                      <p className="text-secondary text-xs mt-1">
+                      <p className="text-secondary text-small-text mt-xs">
                         {errors.address}
                       </p>
                     )}
@@ -286,29 +286,29 @@ export default function Checkout() {
 
                 {/* Payment Method */}
                 <div>
-                  <h2 className="text-sm font-semibold text-white mb-3 flex items-center gap-2">
-                    <CreditCard className="w-4 h-4 text-primary" />
+                  <h2 className="text-heading-sm font-semibold text-white mb-md flex items-center gap-sm">
+                    <CreditCard className="w-4 h-4 text-primary flex-shrink-0" />
                     Payment Method
                   </h2>
 
-                  <div className="bg-dark border border-[#2a2a2a] rounded-lg p-3">
-                    <div className="flex items-start gap-2.5">
+                  <div className="bg-dark border border-[#2a2a2a] rounded-lg p-sm">
+                    <div className="flex items-start gap-sm">
                       <input
                         type="radio"
                         id="cod"
                         name="payment"
                         checked
                         readOnly
-                        className="mt-0.5 accent-primary"
+                        className="mt-sm accent-primary flex-shrink-0"
                       />
                       <div className="flex-1">
                         <label
                           htmlFor="cod"
-                          className="text-white text-sm font-medium cursor-pointer"
+                          className="text-white text-body font-medium cursor-pointer"
                         >
                           Cash on Delivery (COD)
                         </label>
-                        <p className="text-xs text-text-secondary mt-1">
+                        <p className="text-small-text text-text-secondary mt-xs">
                           Pay with cash when you receive your order
                         </p>
                       </div>
@@ -320,7 +320,7 @@ export default function Checkout() {
                 <button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-gradient-to-r from-primary to-[#0088ff] hover:from-primary/90 hover:to-[#0088ff]/90 text-dark font-bold py-3.5 rounded-lg transition-all shadow-glow-blue disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full bg-gradient-to-r from-primary to-[#0088ff] hover:from-primary/90 hover:to-[#0088ff]/90 text-dark font-bold py-sm rounded-lg transition-all shadow-glow-blue disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   {loading ? "Processing..." : "Place Order"}
                 </button>

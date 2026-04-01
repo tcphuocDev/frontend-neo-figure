@@ -107,13 +107,13 @@ export default function OrderDetailModal({ order, isOpen, onClose, onUpdateStatu
     <div className="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center z-50 p-4 animate-fadeIn">
       <div className="bg-white dark:bg-gray-800 rounded-xl border border-gray-200 dark:border-gray-700 shadow-2xl max-w-5xl w-full max-h-[90vh] flex flex-col animate-slideUp">
         {/* Header */}
-        <div className="flex items-center justify-between p-6 border-b border-gray-200 dark:border-gray-700">
-          <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between p-md border-b border-gray-200 dark:border-gray-700">
+          <div className="flex items-center gap-sm">
             <div className={`p-2 ${statusInfo.bgColor} rounded-lg`}>
               <StatusIcon className={`w-5 h-5 ${statusInfo.textColor}`} />
             </div>
             <div>
-              <h3 className="text-xl font-bold text-gray-900 dark:text-white">
+              <h3 className="text-heading-md font-bold text-gray-900 dark:text-white">
                 Order #{order._id.slice(-8).toUpperCase()}
               </h3>
               <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -123,20 +123,20 @@ export default function OrderDetailModal({ order, isOpen, onClose, onUpdateStatu
           </div>
           <button
             onClick={onClose}
-            className="p-2 text-gray-500 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
+            className="p-xs text-gray-500 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
           >
             <X className="w-5 h-5" />
           </button>
         </div>
 
         {/* Body */}
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-md">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
             {/* Left Column - Customer & Shipping Info */}
-            <div className="lg:col-span-1 space-y-6">
+            <div className="lg:col-span-1 space-y-md">
               {/* Customer Info */}
-              <div className="bg-gray-50 dark:bg-gray-900/50 rounded-lg p-4">
-                <div className="flex items-center gap-2 mb-4">
+              <div className="bg-gray-50 dark:bg-gray-900/50 rounded-lg p-sm">
+                <div className="flex items-center gap-sm mb-sm">
                   <User className="w-5 h-5 text-blue-600" />
                   <h4 className="font-semibold text-gray-900 dark:text-white">
                     Customer Information
@@ -167,8 +167,8 @@ export default function OrderDetailModal({ order, isOpen, onClose, onUpdateStatu
               </div>
 
               {/* Shipping Address */}
-              <div className="bg-gray-50 dark:bg-gray-900/50 rounded-lg p-4">
-                <div className="flex items-center gap-2 mb-4">
+              <div className="bg-gray-50 dark:bg-gray-900/50 rounded-lg p-sm">
+                <div className="flex items-center gap-sm mb-sm">
                   <MapPin className="w-5 h-5 text-green-600" />
                   <h4 className="font-semibold text-gray-900 dark:text-white">Shipping Address</h4>
                 </div>
@@ -176,8 +176,8 @@ export default function OrderDetailModal({ order, isOpen, onClose, onUpdateStatu
               </div>
 
               {/* Payment Info */}
-              <div className="bg-gray-50 dark:bg-gray-900/50 rounded-lg p-4">
-                <div className="flex items-center gap-2 mb-4">
+              <div className="bg-gray-50 dark:bg-gray-900/50 rounded-lg p-sm">
+                <div className="flex items-center gap-sm mb-sm">
                   <CreditCard className="w-5 h-5 text-purple-600" />
                   <h4 className="font-semibold text-gray-900 dark:text-white">Payment Method</h4>
                 </div>
@@ -187,13 +187,13 @@ export default function OrderDetailModal({ order, isOpen, onClose, onUpdateStatu
               </div>
 
               {/* Order Status */}
-              <div className="bg-gray-50 dark:bg-gray-900/50 rounded-lg p-4">
-                <div className="flex items-center gap-2 mb-4">
+              <div className="bg-gray-50 dark:bg-gray-900/50 rounded-lg p-sm">
+                <div className="flex items-center gap-sm mb-sm">
                   <Truck className="w-5 h-5 text-orange-600" />
                   <h4 className="font-semibold text-gray-900 dark:text-white">Order Status</h4>
                 </div>
                 <div
-                  className={`flex items-center gap-2 px-3 py-2 rounded-lg ${statusInfo.bgColor}`}
+                  className={`flex items-center gap-sm px-sm py-xs rounded-lg ${statusInfo.bgColor}`}
                 >
                   <StatusIcon className={`w-5 h-5 ${statusInfo.textColor}`} />
                   <span className={`font-semibold ${statusInfo.textColor}`}>
@@ -201,11 +201,11 @@ export default function OrderDetailModal({ order, isOpen, onClose, onUpdateStatu
                   </span>
                 </div>
                 {order.note && (
-                  <div className="mt-3">
-                    <label className="text-xs font-medium text-gray-500 dark:text-gray-400 uppercase">
+                  <div className="mt-sm">
+                    <label className="text-small-text font-medium text-gray-500 dark:text-gray-400 uppercase">
                       Note
                     </label>
-                    <p className="text-gray-700 dark:text-gray-300 mt-1 text-sm">{order.note}</p>
+                    <p className="text-gray-700 dark:text-gray-300 mt-xs text-body">{order.note}</p>
                   </div>
                 )}
               </div>
@@ -213,18 +213,18 @@ export default function OrderDetailModal({ order, isOpen, onClose, onUpdateStatu
 
             {/* Right Column - Order Items */}
             <div className="lg:col-span-2">
-              <div className="bg-gray-50 dark:bg-gray-900/50 rounded-lg p-4">
-                <div className="flex items-center gap-2 mb-4">
+              <div className="bg-gray-50 dark:bg-gray-900/50 rounded-lg p-sm">
+                <div className="flex items-center gap-sm mb-sm">
                   <Package className="w-5 h-5 text-blue-600" />
                   <h4 className="font-semibold text-gray-900 dark:text-white">Order Items</h4>
                 </div>
 
                 {/* Items List */}
-                <div className="space-y-3">
+                <div className="space-y-xs">
                   {order.items.map((item, index) => (
                     <div
                       key={index}
-                      className="flex items-center gap-4 p-4 bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"
+                      className="flex items-center gap-sm p-sm bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700"
                     >
                       <img
                         src={item.productId?.thumbnail || '/placeholder.png'}
@@ -232,13 +232,13 @@ export default function OrderDetailModal({ order, isOpen, onClose, onUpdateStatu
                         className="w-20 h-20 object-cover rounded-lg"
                       />
                       <div className="flex-1">
-                        <h5 className="font-semibold text-gray-900 dark:text-white mb-1">
+                        <h5 className="font-semibold text-gray-900 dark:text-white mb-xs">
                           {item.productId?.name || 'Deleted Product'}
                         </h5>
-                        <p className="text-sm text-gray-500 dark:text-gray-400">
+                        <p className="text-body text-gray-500 dark:text-gray-400">
                           SKU: {item.productId?.sku || 'N/A'}
                         </p>
-                        <div className="flex items-center gap-4 mt-2">
+                        <div className="flex items-center gap-sm mt-sm">
                           <span className="text-sm text-gray-600 dark:text-gray-400">
                             Quantity:{' '}
                             <span className="font-semibold text-gray-900 dark:text-white">
@@ -263,8 +263,8 @@ export default function OrderDetailModal({ order, isOpen, onClose, onUpdateStatu
                 </div>
 
                 {/* Order Summary */}
-                <div className="mt-6 pt-6 border-t border-gray-200 dark:border-gray-700">
-                  <div className="space-y-3">
+                <div className="mt-md pt-md border-t border-gray-200 dark:border-gray-700">
+                  <div className="space-y-xs">
                     <div className="flex justify-between text-gray-600 dark:text-gray-400">
                       <span>Subtotal</span>
                       <span className="font-medium">{formatPrice(order.totalPrice)}</span>
@@ -274,7 +274,7 @@ export default function OrderDetailModal({ order, isOpen, onClose, onUpdateStatu
                       <span className="font-medium">{formatPrice(order.shippingFee || 0)}</span>
                     </div>
                     {order.discount > 0 && (
-                      <div className="flex justify-between text-green-600 dark:text-green-400">
+                      <div className="flex justify-between text-green-600 dark:text-green-400 text-body">
                         <span>Discount</span>
                         <span className="font-medium">-{formatPrice(order.discount)}</span>
                       </div>
@@ -295,7 +295,7 @@ export default function OrderDetailModal({ order, isOpen, onClose, onUpdateStatu
         </div>
 
         {/* Footer */}
-        <div className="p-6 border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/30">
+        <div className="p-md border-t border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900/30">
           <div className="flex items-center justify-between">
             <button
               onClick={handlePrint}

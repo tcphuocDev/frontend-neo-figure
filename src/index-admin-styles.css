@@ -1,0 +1,84 @@
+/* Admin UI Standardization Reference
+
+This file documents the standardized spacing, padding, and typography
+standards applied across all admin pages and components.
+
+IMPORTANT: Use these Tailwind utility classes throughout admin UI:
+*/
+
+/* SPACING STANDARDS */
+:root {
+  --spacing-xs: 8px;    /* gap-xs, p-xs, m-xs */
+  --spacing-sm: 12px;   /* gap-sm, space-y-sm, p-sm */
+  --spacing-md: 16px;   /* gap-md, space-y-md, p-md */
+}
+
+/* SECTION SPACING */
+.admin-page {
+  @apply space-y-md; /* 16px between major sections */
+}
+
+.admin-section {
+  @apply space-y-md; /* 16px between section groups */
+}
+
+.form-group {
+  @apply space-y-sm; /* 12px between form fields */
+}
+
+/* PADDING STANDARDS */
+.admin-container {
+  @apply p-md; /* 16px padding for main containers */
+}
+
+.form-input {
+  @apply px-md py-sm; /* 16px horizontal, 12px vertical */
+}
+
+.button-standard {
+  @apply px-md py-sm; /* Standard button padding */
+}
+
+.badge {
+  @apply px-sm py-xs text-body; /* 12px horizontal, 8px vertical, 13px text */
+}
+
+/* FONT STANDARDS */
+.text-body {
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.text-heading-sm {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.text-heading-md {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.text-heading-lg {
+  font-size: 20px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.text-small-text {
+  font-size: 12px;
+  line-height: 1.4;
+}
+
+/* GRID & GAP STANDARDS */
+.admin-grid {
+  @apply grid gap-md;
+}
+
+.form-grid {
+  @apply grid gap-sm;
+}
+
+/* This CSS is purely for documentation. All actual styling uses Tailwind utilities */

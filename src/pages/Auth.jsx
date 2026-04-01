@@ -231,12 +231,12 @@ export default function Auth() {
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="flex mb-6 bg-black/30 backdrop-blur-sm rounded-2xl p-1.5 border border-white/10"
+              className="flex mb-md bg-black/30 backdrop-blur-sm rounded-2xl p-xs border border-white/10"
             >
               <button
                 type="button"
                 onClick={() => setIsLogin(true)}
-                className={`relative flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${
+                className={`relative flex-1 py-sm rounded-xl text-body font-bold transition-all duration-300 ${
                   isLogin ? "text-white" : "text-gray-400 hover:text-gray-200"
                 }`}
               >
@@ -252,7 +252,7 @@ export default function Auth() {
               <button
                 type="button"
                 onClick={() => setIsLogin(false)}
-                className={`relative flex-1 py-3 rounded-xl text-sm font-bold transition-all duration-300 ${
+                className={`relative flex-1 py-sm rounded-xl text-body font-bold transition-all duration-300 ${
                   !isLogin ? "text-white" : "text-gray-400 hover:text-gray-200"
                 }`}
               >
@@ -268,7 +268,7 @@ export default function Auth() {
             </motion.div>
 
             {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="gap-md flex flex-col">
               {/* Error Message */}
               <AnimatePresence>
                 {error && (
@@ -276,7 +276,7 @@ export default function Auth() {
                     initial={{ opacity: 0, y: -10, scale: 0.9 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -10, scale: 0.9 }}
-                    className="flex items-center gap-2 p-4 bg-red-500/20 backdrop-blur-sm border-2 border-red-500/50 rounded-xl text-red-300 text-sm shadow-[0_0_20px_rgba(239,68,68,0.3)]"
+                    className="flex items-center gap-sm p-sm bg-red-500/20 backdrop-blur-sm border-2 border-red-500/50 rounded-xl text-red-300 text-body shadow-[0_0_20px_rgba(239,68,68,0.3)]"
                   >
                     <AlertCircle size={18} />
                     <span className="font-medium">{error}</span>
@@ -404,7 +404,7 @@ export default function Auth() {
             </form>
 
             {/* Divider */}
-            <div className="flex items-center my-6">
+            <div className="flex items-center my-md">
               <motion.div
                 initial={{ scaleX: 0 }}
                 animate={{ scaleX: 1 }}
@@ -421,7 +421,7 @@ export default function Auth() {
                   repeat: Infinity,
                   ease: "linear",
                 }}
-                className="px-4 text-xs text-gray-400 font-semibold"
+                className="px-sm text-small-text text-gray-400 font-semibold"
               >
                 ⭐
               </motion.span>
@@ -438,13 +438,13 @@ export default function Auth() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6 }}
-              className="space-y-3"
+              className="gap-sm flex flex-col"
             >
               <motion.button
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 type="button"
-                className="w-full h-11 border-2 border-white/20 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-white/30 rounded-xl text-white text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2 shadow-lg"
+                className="w-full h-11 border-2 border-white/20 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-white/30 rounded-xl text-white text-body font-medium transition-all duration-300 flex items-center justify-center gap-sm shadow-lg"
               >
                 <span className="text-lg">🌐</span>
                 Continue with Google
@@ -453,7 +453,7 @@ export default function Auth() {
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
                 type="button"
-                className="w-full h-11 border-2 border-white/20 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-white/30 rounded-xl text-white text-sm font-medium transition-all duration-300 flex items-center justify-center gap-2 shadow-lg"
+                className="w-full h-11 border-2 border-white/20 bg-white/5 backdrop-blur-sm hover:bg-white/10 hover:border-white/30 rounded-xl text-white text-body font-medium transition-all duration-300 flex items-center justify-center gap-sm shadow-lg"
               >
                 <span className="text-lg">📘</span>
                 Continue with Facebook
@@ -466,14 +466,14 @@ export default function Auth() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.7 }}
             >
-              <p className="text-center text-gray-400 text-sm mt-6">
+              <p className="text-center text-gray-400 text-body mt-md">
                 {isLogin
                   ? "Don't have an account?"
                   : "Already have an account?"}
                 <button
                   type="button"
                   onClick={() => setIsLogin(!isLogin)}
-                  className="ml-2 text-transparent bg-gradient-to-r from-cyan-400 to-pink-400 bg-clip-text font-bold hover:from-cyan-300 hover:to-pink-300 transition-all"
+                  className="ml-sm text-transparent bg-gradient-to-r from-cyan-400 to-pink-400 bg-clip-text font-bold hover:from-cyan-300 hover:to-pink-300 transition-all"
                 >
                   {isLogin ? "Register Now! ✨" : "Login Here! 🚀"}
                 </button>
@@ -481,7 +481,7 @@ export default function Auth() {
 
               <Link
                 to="/"
-                className="block text-center text-gray-500 text-sm mt-4 hover:text-gray-300 transition-colors"
+                className="block text-center text-gray-500 text-body mt-sm hover:text-gray-300 transition-colors"
               >
                 ← Back to Home
               </Link>
@@ -535,7 +535,7 @@ function FloatingInput({
           transition={{
             duration: 0.3,
           }}
-          className="absolute left-4 top-1/2 -translate-y-1/2 z-10"
+          className="absolute left-md top-1/2 -translate-y-1/2 z-10 flex items-center justify-center"
         >
           {icon}
         </motion.div>
@@ -545,14 +545,14 @@ function FloatingInput({
           initial={false}
           animate={{
             top: isFocused || hasValue ? "8px" : "50%",
-            fontSize: isFocused || hasValue ? "11px" : "14px",
+            fontSize: isFocused || hasValue ? "11px" : "13px",
             translateY: isFocused || hasValue ? "0%" : "-50%",
           }}
           transition={{
             duration: 0.2,
             ease: "easeOut",
           }}
-          className={`absolute left-12 pointer-events-none z-10 px-1 transition-colors duration-300
+          className={`absolute left-14 pointer-events-none z-10 px-1 transition-colors duration-300
             ${
               isFocused || hasValue
                 ? "font-semibold bg-gradient-to-r from-cyan-400 to-purple-400 bg-clip-text text-transparent"
@@ -576,7 +576,7 @@ function FloatingInput({
           onBlur={() => setIsFocused(false)}
           required={required}
           minLength={minLength}
-          className={`w-full h-14 pl-12 pr-12 pt-5 pb-2 bg-black/30 backdrop-blur-sm border-2 rounded-xl text-white text-sm outline-none transition-all duration-300 ${
+          className={`w-full h-12 pl-14 pr-12 pt-sm pb-xs bg-black/30 backdrop-blur-sm border-2 rounded-xl text-white text-body outline-none transition-all duration-300 ${
             isFocused
               ? "border-cyan-400 shadow-[0_0_20px_rgba(0,206,255,0.4)]"
               : "border-white/20 hover:border-white/30"
@@ -585,7 +585,7 @@ function FloatingInput({
 
         {/* Right Icon */}
         {rightIcon && (
-          <div className="absolute right-4 top-1/2 -translate-y-1/2 z-10">
+          <div className="absolute right-md top-1/2 -translate-y-1/2 z-10 flex items-center justify-center">
             {rightIcon}
           </div>
         )}

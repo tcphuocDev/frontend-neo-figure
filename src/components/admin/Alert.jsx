@@ -33,10 +33,10 @@ export default function Alert({ type = 'info', message, onClose }) {
 
   return (
     <div
-      className={`${style.bg} ${style.border} border rounded-lg p-4 flex items-start space-x-3`}
+      className={`${style.bg} ${style.border} border rounded-lg p-md flex items-start gap-sm`}
     >
       <Icon className={`w-5 h-5 ${style.text} flex-shrink-0 mt-0.5`} />
-      <p className={`flex-1 ${style.text} text-sm`}>{message}</p>
+      <p className={`flex-1 ${style.text} text-body`}>{message}</p>
       {onClose && (
         <button
           onClick={onClose}

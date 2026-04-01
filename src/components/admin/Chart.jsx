@@ -14,12 +14,12 @@ import {
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
     return (
-      <div className="bg-background-card dark:bg-gray-800 p-4 rounded-lg shadow-lg border border-border dark:border-gray-700">
-        <p className="text-sm font-medium text-text-primary dark:text-white mb-2">
+      <div className="bg-background-card dark:bg-gray-800 p-sm rounded-lg shadow-lg border border-border dark:border-gray-700">
+        <p className="text-body font-medium text-text-primary dark:text-white mb-xs">
           {label}
         </p>
         {payload.map((entry, index) => (
-          <p key={index} className="text-sm" style={{ color: entry.color }}>
+          <p key={index} className="text-body" style={{ color: entry.color }}>
             {entry.name}: {entry.value.toLocaleString()}
           </p>
         ))}
@@ -31,12 +31,12 @@ const CustomTooltip = ({ active, payload, label }) => {
 
 export const RevenueChart = ({ data }) => {
   return (
-    <div className="bg-background-card dark:bg-gray-800 rounded-xl shadow-sm border border-border dark:border-gray-700 p-6">
-      <div className="flex items-center justify-between mb-6">
-        <h3 className="text-lg font-semibold text-text-primary dark:text-white">
+    <div className="bg-background-card dark:bg-gray-800 rounded-xl shadow-sm border border-border dark:border-gray-700 p-md">
+      <div className="flex items-center justify-between mb-md">
+        <h3 className="text-heading-sm font-semibold text-text-primary dark:text-white">
           Revenue Overview
         </h3>
-        <select className="px-3 py-1.5 text-sm border border-border dark:border-gray-600 rounded-lg bg-background-card dark:bg-gray-700 text-text-primary dark:text-white focus:ring-2 focus:ring-primary outline-none">
+        <select className="px-sm py-xs text-body border border-border dark:border-gray-600 rounded-lg bg-background-card dark:bg-gray-700 text-text-primary dark:text-white focus:ring-2 focus:ring-primary outline-none">
           <option>Last 7 days</option>
           <option>Last 30 days</option>
           <option>Last 3 months</option>
@@ -67,12 +67,12 @@ export const RevenueChart = ({ data }) => {
 
 export const OrdersChart = ({ data }) => {
   return (
-    <div className="bg-background-card dark:bg-gray-800 rounded-xl shadow-sm border border-border dark:border-gray-700 p-6">
-      <div className="flex items-center justify-between mb-6">
-        <h3 className="text-lg font-semibold text-text-primary dark:text-white">
+    <div className="bg-background-card dark:bg-gray-800 rounded-xl shadow-sm border border-border dark:border-gray-700 p-md">
+      <div className="flex items-center justify-between mb-md">
+        <h3 className="text-heading-sm font-semibold text-text-primary dark:text-white">
           Orders Statistics
         </h3>
-        <select className="px-3 py-1.5 text-sm border border-border dark:border-gray-600 rounded-lg bg-background-card dark:bg-gray-700 text-text-primary dark:text-white focus:ring-2 focus:ring-primary outline-none">
+        <select className="px-sm py-xs text-body border border-border dark:border-gray-600 rounded-lg bg-background-card dark:bg-gray-700 text-text-primary dark:text-white focus:ring-2 focus:ring-primary outline-none">
           <option>Last 7 days</option>
           <option>Last 30 days</option>
           <option>Last 3 months</option>

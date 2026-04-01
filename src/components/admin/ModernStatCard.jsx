@@ -49,7 +49,7 @@ const ModernStatCard = ({
     <motion.div
       whileHover={{ y: -4, scale: 1.01 }}
       transition={{ type: 'spring', stiffness: 300, damping: 20 }}
-      className="group relative bg-white dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl p-6 border border-gray-100 dark:border-gray-700/50 hover:border-gray-200 dark:hover:border-gray-600 hover:shadow-xl hover:shadow-gray-200/50 dark:hover:shadow-gray-900/50 transition-all duration-300 cursor-pointer overflow-hidden"
+      className="group relative bg-white dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl p-sm border border-gray-100 dark:border-gray-700/50 hover:border-gray-200 dark:hover:border-gray-600 hover:shadow-xl hover:shadow-gray-200/50 dark:hover:shadow-gray-900/50 transition-all duration-300 cursor-pointer overflow-hidden"
     >
       {/* Background gradient effect */}
       <div
@@ -58,16 +58,16 @@ const ModernStatCard = ({
 
       <div className="relative">
         {/* Header */}
-        <div className="flex items-start justify-between mb-4">
+        <div className="flex items-start justify-between mb-sm">
           <div
-            className={`p-3 rounded-xl ${colors.bg} ring-1 ${colors.ring} group-hover:scale-110 transition-transform duration-300`}
+            className={`p-sm rounded-xl ${colors.bg} ring-1 ${colors.ring} group-hover:scale-110 transition-transform duration-300`}
           >
-            <Icon className={`w-6 h-6 ${colors.icon}`} />
+            <Icon className={`w-5 h-5 ${colors.icon}`} />
           </div>
 
           {change !== undefined && (
             <div
-              className={`flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-semibold ${
+              className={`flex items-center gap-xs px-sm py-xs rounded-full text-body font-semibold ${
                 trend === 'up'
                   ? 'bg-emerald-50 text-emerald-700 dark:bg-emerald-950/50 dark:text-emerald-400'
                   : 'bg-red-50 text-red-700 dark:bg-red-950/50 dark:text-red-400'
@@ -84,11 +84,11 @@ const ModernStatCard = ({
         </div>
 
         {/* Content */}
-        <div className="space-y-1">
-          <p className="text-sm font-medium text-gray-600 dark:text-gray-400">{title}</p>
+        <div className="space-y-xs">
+          <p className="text-body font-medium text-gray-600 dark:text-gray-400">{title}</p>
           <p className="text-3xl font-bold text-gray-900 dark:text-white tracking-tight">{value}</p>
           {description && (
-            <p className="text-xs text-gray-500 dark:text-gray-500 flex items-center gap-1 pt-1">
+            <p className="text-small-text text-gray-500 dark:text-gray-500 flex items-center gap-xs pt-xs">
               {description}
               <ArrowUpRight className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
             </p>

@@ -21,10 +21,10 @@ const SettingsPage = () => {
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-md">
       {/* Page Header */}
       <div>
-        <h1 className="text-2xl font-bold text-text-primary dark:text-white mb-1">
+        <h1 className="text-heading-lg font-bold text-text-primary dark:text-white mb-xs">
           Settings
         </h1>
         <p className="text-text-secondary dark:text-gray-400">
@@ -40,7 +40,7 @@ const SettingsPage = () => {
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-6 py-4 font-medium text-sm whitespace-nowrap transition-colors border-b-2 ${
+                className={`flex items-center gap-sm px-md py-md font-medium text-body whitespace-nowrap transition-colors border-b-2 ${
                   activeTab === tab.id
                     ? 'border-primary text-primary bg-primary-light'
                     : 'border-transparent text-text-secondary dark:text-gray-400 hover:text-text-primary dark:hover:text-white hover:bg-background dark:hover:bg-gray-700'
@@ -53,15 +53,15 @@ const SettingsPage = () => {
           </nav>
         </div>
 
-        <div className="p-6">
+        <div className="p-md">
           {/* General Settings */}
           {activeTab === 'general' && (
-            <div className="space-y-6">
+            <div className="space-y-md">
               <div>
-                <h3 className="text-lg font-semibold text-text-primary dark:text-white mb-4">
+                <h3 className="text-heading-sm font-semibold text-text-primary dark:text-white mb-md">
                   General Settings
                 </h3>
-                <div className="space-y-4">
+                <div className="space-y-sm">
                   <div>
                     <label className="block text-sm font-medium text-text-primary dark:text-gray-300 mb-2">
                       Store Name
@@ -119,12 +119,12 @@ const SettingsPage = () => {
 
           {/* Email Settings */}
           {activeTab === 'email' && (
-            <div className="space-y-6">
+            <div className="space-y-md">
               <div>
-                <h3 className="text-lg font-semibold text-text-primary dark:text-white mb-4">
+                <h3 className="text-heading-sm font-semibold text-text-primary dark:text-white mb-md">
                   Email Configuration
                 </h3>
-                <div className="space-y-4">
+                <div className="space-y-sm">
                   <div>
                     <label className="block text-sm font-medium text-text-primary dark:text-gray-300 mb-2">
                       SMTP Host
@@ -135,7 +135,7 @@ const SettingsPage = () => {
                       className="w-full px-4 py-2.5 border border-border dark:border-gray-600 rounded-lg bg-background-card dark:bg-gray-700 text-text-primary dark:text-white focus:ring-2 focus:ring-primary outline-none transition-all"
                     />
                   </div>
-                  <div className="grid grid-cols-2 gap-4">
+                    <div className="grid grid-cols-2 gap-sm">
                     <div>
                       <label className="block text-sm font-medium text-text-primary dark:text-gray-300 mb-2">
                         SMTP Port
@@ -181,18 +181,18 @@ const SettingsPage = () => {
 
           {/* Security Settings */}
           {activeTab === 'security' && (
-            <div className="space-y-6">
+            <div className="space-y-md">
               <div>
-                <h3 className="text-lg font-semibold text-text-primary dark:text-white mb-4">
+                <h3 className="text-heading-sm font-semibold text-text-primary dark:text-white mb-sm">
                   Security Settings
                 </h3>
-                <div className="space-y-4">
-                  <div className="flex items-center justify-between p-4 bg-background dark:bg-gray-900/50 rounded-lg border border-border">
+                <div className="space-y-sm">
+                  <div className="flex items-center justify-between p-sm bg-background dark:bg-gray-900/50 rounded-lg border border-border">
                     <div>
                       <p className="font-medium text-text-primary dark:text-white">
                         Two-Factor Authentication
                       </p>
-                      <p className="text-sm text-text-secondary dark:text-gray-400">
+                      <p className="text-body text-text-secondary dark:text-gray-400">
                         Add an extra layer of security
                       </p>
                     </div>
@@ -201,12 +201,12 @@ const SettingsPage = () => {
                       <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-primary/20 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-primary"></div>
                     </label>
                   </div>
-                  <div className="flex items-center justify-between p-4 bg-background dark:bg-gray-900/50 rounded-lg border border-border">
+                  <div className="flex items-center justify-between p-sm bg-background dark:bg-gray-900/50 rounded-lg border border-border">
                     <div>
                       <p className="font-medium text-text-primary dark:text-white">
                         Login Alerts
                       </p>
-                      <p className="text-sm text-text-secondary dark:text-gray-400">
+                      <p className="text-body text-text-secondary dark:text-gray-400">
                         Get notified of new logins
                       </p>
                     </div>
@@ -219,11 +219,11 @@ const SettingsPage = () => {
                       <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-cyan-300 dark:peer-focus:ring-cyan-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all dark:border-gray-600 peer-checked:bg-cyan-600"></div>
                     </label>
                   </div>
-                  <div className="border-t border-gray-200 dark:border-gray-700 pt-4 mt-4">
-                    <h4 className="font-medium text-gray-900 dark:text-white mb-3">
+                  <div className="border-t border-gray-200 dark:border-gray-700 pt-sm mt-sm">
+                    <h4 className="font-medium text-gray-900 dark:text-white mb-xs">
                       Change Password
                     </h4>
-                    <div className="space-y-3">
+                    <div className="space-y-xs">
                       <input
                         type="password"
                         placeholder="Current Password"
@@ -248,12 +248,12 @@ const SettingsPage = () => {
 
           {/* Notifications Settings */}
           {activeTab === 'notifications' && (
-            <div className="space-y-6">
+            <div className="space-y-md">
               <div>
-                <h3 className="text-lg font-semibold text-gray-900 dark:text-white mb-4">
+                <h3 className="text-heading-sm font-semibold text-gray-900 dark:text-white mb-sm">
                   Notification Preferences
                 </h3>
-                <div className="space-y-4">
+                <div className="space-y-sm">
                   {[
                     {
                       title: 'New Orders',
@@ -278,13 +278,13 @@ const SettingsPage = () => {
                   ].map((item, index) => (
                     <div
                       key={index}
-                      className="flex items-center justify-between p-4 bg-background dark:bg-gray-900/50 rounded-lg border border-border"
+                      className="flex items-center justify-between p-sm bg-background dark:bg-gray-900/50 rounded-lg border border-border"
                     >
                       <div>
                         <p className="font-medium text-text-primary dark:text-white">
                           {item.title}
                         </p>
-                        <p className="text-sm text-text-secondary dark:text-gray-400">
+                        <p className="text-body text-text-secondary dark:text-gray-400">
                           {item.description}
                         </p>
                       </div>
@@ -305,12 +305,12 @@ const SettingsPage = () => {
 
           {/* Payment Settings */}
           {activeTab === 'payment' && (
-            <div className="space-y-6">
+            <div className="space-y-md">
               <div>
-                <h3 className="text-lg font-semibold text-text-primary dark:text-white mb-4">
+                <h3 className="text-heading-sm font-semibold text-text-primary dark:text-white mb-sm">
                   Payment Methods
                 </h3>
-                <div className="space-y-4">
+                <div className="space-y-sm">
                   {[
                     { name: 'Cash on Delivery', enabled: true },
                     { name: 'Bank Transfer', enabled: true },
@@ -320,7 +320,7 @@ const SettingsPage = () => {
                   ].map((method, index) => (
                     <div
                       key={index}
-                      className="flex items-center justify-between p-4 bg-background dark:bg-gray-900/50 rounded-lg border border-border"
+                      className="flex items-center justify-between p-sm bg-background dark:bg-gray-900/50 rounded-lg border border-border"
                     >
                       <div>
                         <p className="font-medium text-text-primary dark:text-white">
@@ -343,7 +343,7 @@ const SettingsPage = () => {
           )}
 
           {/* Save Button */}
-          <div className="flex justify-end pt-6 border-t border-border dark:border-gray-700 mt-6">
+          <div className="flex justify-end pt-md border-t border-border dark:border-gray-700 mt-md">
             <button className="inline-flex items-center gap-2 px-6 py-2.5 bg-primary hover:bg-primary-hover text-white rounded-lg transition-all duration-200 font-medium shadow-md hover:shadow-lg">
               <Save className="w-5 h-5" />
               Save Changes

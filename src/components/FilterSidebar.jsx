@@ -59,18 +59,18 @@ export default function FilterSidebar({
   };
 
   const content = (
-    <div className="space-y-5">
+    <div className="gap-md flex flex-col max-h-[calc(100vh-300px)] overflow-y-auto pr-xs">
       {/* Header */}
-      <div className="flex items-center justify-between pb-3 border-b border-[#2a2a2a]">
-        <div className="flex items-center gap-2">
+      <div className="flex items-center justify-between pb-sm border-b border-[#2a2a2a]">
+        <div className="flex items-center gap-sm">
           <Filter className="w-4 h-4 text-primary" />
-          <h2 className="text-base font-bold text-white">Filters</h2>
+          <h2 className="text-heading-sm font-bold text-white">Filters</h2>
         </div>
-        <div className="flex items-center gap-2">
+        <div className="flex items-center gap-xs">
           {!isMobile && onToggle && (
             <button
               onClick={onToggle}
-              className="p-1.5 hover:bg-dark-hover rounded transition-colors"
+              className="p-xs hover:bg-dark-hover rounded transition-colors"
               title="Hide filters"
             >
               <X className="w-4 h-4 text-text-secondary hover:text-white" />
@@ -79,7 +79,7 @@ export default function FilterSidebar({
           {isMobile && (
             <button
               onClick={onClose}
-              className="p-1.5 hover:bg-dark-hover rounded transition-colors"
+              className="p-xs hover:bg-dark-hover rounded transition-colors"
             >
               <X className="w-4 h-4 text-text-secondary hover:text-white" />
             </button>
@@ -90,34 +90,34 @@ export default function FilterSidebar({
       {/* Clear Filters */}
       <button
         onClick={clearFilters}
-        className="w-full px-3 py-2 bg-dark-hover hover:bg-dark border border-[#2a2a2a] hover:border-primary/50 rounded text-sm text-text-secondary hover:text-primary transition-all font-medium"
+        className="w-full px-sm py-xs bg-dark-hover hover:bg-dark border border-[#2a2a2a] hover:border-primary/50 rounded text-body text-text-secondary hover:text-primary transition-all font-medium"
       >
         Clear All
       </button>
 
       {/* Categories */}
       <div>
-        <h3 className="text-white text-sm font-semibold mb-3 flex items-center gap-1.5">
-          <Sparkles className="w-3.5 h-3.5 text-primary" />
+        <h3 className="text-white text-heading-sm font-semibold mb-md flex items-center gap-xs">
+          <Sparkles className="w-4 h-4 text-primary" />
           Categories
         </h3>
-        <div className="space-y-1">
+        <div className="gap-sm flex flex-col">
           <button
             onClick={() => handleCategoryChange("")}
-            className={`w-full text-left px-2.5 py-2 rounded text-sm transition-all flex items-center justify-between ${
+            className={`w-full text-left px-sm py-sm rounded text-heading-sm transition-all flex items-center justify-between ${
               !filters.category
                 ? "bg-primary text-dark font-semibold"
                 : "text-text-secondary hover:bg-dark-hover hover:text-white"
             }`}
           >
             <span>All Categories</span>
-            {!filters.category && <Check className="w-3.5 h-3.5" />}
+            {!filters.category && <Check className="w-4 h-4" />}
           </button>
           {categories.map((cat) => (
             <button
               key={cat._id}
               onClick={() => handleCategoryChange(cat.slug)}
-              className={`w-full text-left px-2.5 py-2 rounded text-sm transition-all flex items-center justify-between ${
+              className={`w-full text-left px-sm py-sm rounded text-heading-sm transition-all flex items-center justify-between ${
                 filters.category === cat.slug
                   ? "bg-primary text-dark font-semibold"
                   : "text-text-secondary hover:bg-dark-hover hover:text-white"
@@ -125,7 +125,7 @@ export default function FilterSidebar({
             >
               <span>{cat.name}</span>
               {filters.category === cat.slug && (
-                <Check className="w-3.5 h-3.5" />
+                <Check className="w-4 h-4" />
               )}
             </button>
           ))}
@@ -134,11 +134,11 @@ export default function FilterSidebar({
 
       {/* Price Range */}
       <div>
-        <h3 className="text-white text-sm font-semibold mb-3 flex items-center gap-1.5">
-          <DollarSign className="w-3.5 h-3.5 text-green-500" />
+        <h3 className="text-white text-heading-sm font-semibold mb-md flex items-center gap-xs">
+          <DollarSign className="w-4 h-4 text-green-500" />
           Price Range
         </h3>
-        <div className="space-y-1">
+        <div className="gap-sm flex flex-col">
           {[
             { label: "All Prices", min: "", max: "" },
             { label: "Under 500K", min: 0, max: 500000 },
@@ -156,14 +156,14 @@ export default function FilterSidebar({
               <button
                 key={index}
                 onClick={() => handlePriceChange(range.min, range.max)}
-                className={`w-full text-left px-2.5 py-2 rounded text-sm transition-all flex items-center justify-between ${
+                className={`w-full text-left px-sm py-sm rounded text-heading-sm transition-all flex items-center justify-between ${
                   isActive
                     ? "bg-green-500 text-dark font-semibold"
                     : "text-text-secondary hover:bg-dark-hover hover:text-white"
                 }`}
               >
                 <span>{range.label}</span>
-                {isActive && <Check className="w-3.5 h-3.5" />}
+                {isActive && <Check className="w-4 h-4" />}
               </button>
             );
           })}
@@ -172,24 +172,24 @@ export default function FilterSidebar({
 
       {/* Rating */}
       <div>
-        <h3 className="text-white text-sm font-semibold mb-3 flex items-center gap-1.5">
-          <Star className="w-3.5 h-3.5 text-yellow-500 fill-yellow-500" />
+        <h3 className="text-white text-heading-sm font-semibold mb-md flex items-center gap-xs">
+          <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
           Rating
         </h3>
-        <div className="space-y-1">
+        <div className="gap-sm flex flex-col">
           {[5, 4, 3].map((rating) => {
             const isActive = filters.minRating === rating.toString();
             return (
               <button
                 key={rating}
                 onClick={() => handleRatingChange(rating)}
-                className={`w-full text-left px-2.5 py-2 rounded text-sm transition-all flex items-center justify-between ${
+                className={`w-full text-left px-sm py-sm rounded text-heading-sm transition-all flex items-center justify-between ${
                   isActive
                     ? "bg-yellow-500 text-dark font-semibold"
                     : "text-text-secondary hover:bg-dark-hover hover:text-white"
                 }`}
               >
-                <div className="flex items-center gap-1.5">
+                <div className="flex items-center gap-xs">
                   <div className="flex items-center">
                     {[...Array(rating)].map((_, i) => (
                       <Star
@@ -204,7 +204,7 @@ export default function FilterSidebar({
                   </div>
                   <span>& Up</span>
                 </div>
-                {isActive && <Check className="w-3.5 h-3.5" />}
+                {isActive && <Check className="w-4 h-4" />}
               </button>
             );
           })}
@@ -213,11 +213,11 @@ export default function FilterSidebar({
 
       {/* Special Filters */}
       <div>
-        <h3 className="text-white text-sm font-semibold mb-3 flex items-center gap-1.5">
-          <Flame className="w-3.5 h-3.5 text-secondary" />
+        <h3 className="text-white text-heading-sm font-semibold mb-md flex items-center gap-xs">
+          <Flame className="w-4 h-4 text-secondary" />
           Special
         </h3>
-        <div className="space-y-1.5">
+        <div className="gap-sm flex flex-col">
           <button
             onClick={() =>
               onFilterChange({
@@ -226,7 +226,7 @@ export default function FilterSidebar({
                 page: 1,
               })
             }
-            className={`w-full text-left px-2.5 py-2 rounded text-sm transition-all flex items-center gap-2 ${
+            className={`w-full text-left px-sm py-sm rounded text-heading-sm transition-all flex items-center gap-sm ${
               filters.isHot
                 ? "bg-secondary text-white font-semibold"
                 : "bg-secondary/10 border border-secondary/30 text-secondary hover:bg-secondary/20"
@@ -234,7 +234,7 @@ export default function FilterSidebar({
           >
             <Flame className="w-4 h-4" />
             <span>Hot Deals</span>
-            {filters.isHot && <Check className="w-3.5 h-3.5 ml-auto" />}
+            {filters.isHot && <Check className="w-4 h-4 ml-auto" />}
           </button>
           <button
             onClick={() =>
@@ -244,7 +244,7 @@ export default function FilterSidebar({
                 page: 1,
               })
             }
-            className={`w-full text-left px-2.5 py-2 rounded text-sm transition-all flex items-center gap-2 ${
+            className={`w-full text-left px-sm py-sm rounded text-heading-sm transition-all flex items-center gap-sm ${
               filters.isFeatured
                 ? "bg-primary text-dark font-semibold"
                 : "bg-primary/10 border border-primary/30 text-primary hover:bg-primary/20"
@@ -252,7 +252,7 @@ export default function FilterSidebar({
           >
             <Star className="w-4 h-4 fill-current" />
             <span>Featured</span>
-            {filters.isFeatured && <Check className="w-3.5 h-3.5 ml-auto" />}
+            {filters.isFeatured && <Check className="w-4 h-4 ml-auto" />}
           </button>
         </div>
       </div>
@@ -278,7 +278,7 @@ export default function FilterSidebar({
               animate={{ x: 0 }}
               exit={{ x: -300 }}
               transition={{ type: "spring", damping: 25 }}
-              className="fixed left-0 top-0 bottom-0 w-72 bg-dark-card border-r border-[#2a2a2a] p-4 overflow-y-auto z-50 lg:hidden"
+              className="fixed left-0 top-0 bottom-0 w-72 bg-dark-card border-r border-[#2a2a2a] p-md overflow-y-auto z-50 lg:hidden"
             >
               {content}
             </motion.div>
@@ -289,7 +289,7 @@ export default function FilterSidebar({
   }
 
   return (
-    <div className="bg-dark-card rounded-lg p-4 border border-[#2a2a2a] sticky top-24">
+    <div className="bg-dark-card rounded-lg p-md border border-[#2a2a2a] sticky top-24">
       {content}
     </div>
   );

@@ -153,12 +153,12 @@ export default function AgentsDashboard() {
     switch (activeTab) {
       case 'shopping-assistant':
         return (
-          <div className="space-y-4">
-            <div className="bg-dark-card p-6 rounded-lg border border-[#2a2a2a]">
-              <h3 className="text-lg font-bold text-white mb-4">Test Shopping Assistant</h3>
+          <div className="space-y-sm">
+            <div className="bg-dark-card p-md rounded-lg border border-[#2a2a2a]">
+              <h3 className="text-heading-sm font-bold text-white mb-sm">Test Shopping Assistant</h3>
 
               {/* Chat History */}
-              <div className="bg-dark rounded-lg p-4 mb-4 h-96 overflow-y-auto space-y-3">
+              <div className="bg-dark rounded-lg p-sm mb-sm h-96 overflow-y-auto space-y-xs">
                 {chatHistory.length === 0 ? (
                   <p className="text-text-secondary text-center">Start a conversation...</p>
                 ) : (
@@ -168,11 +168,11 @@ export default function AgentsDashboard() {
                       className={`flex ${msg.role === 'user' ? 'justify-end' : 'justify-start'}`}
                     >
                       <div
-                        className={`max-w-[80%] p-3 rounded-lg ${
+                        className={`max-w-[80%] p-xs rounded-lg ${
                           msg.role === 'user' ? 'bg-primary text-dark' : 'bg-dark-card text-white'
                         }`}
                       >
-                        <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
+                        <p className="text-body whitespace-pre-wrap">{msg.content}</p>
                       </div>
                     </div>
                   ))
@@ -180,33 +180,33 @@ export default function AgentsDashboard() {
               </div>
 
               {/* Input */}
-              <div className="flex items-center space-x-2">
+              <div className="flex items-center space-x-sm">
                 <input
                   type="text"
                   value={chatMessage}
                   onChange={(e) => setChatMessage(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSendMessage()}
                   placeholder="Nhập tin nhắn..."
-                  className="flex-1 px-4 py-2 bg-dark border border-[#2a2a2a] rounded-lg text-white focus:border-primary focus:outline-none"
+                    className="flex-1 px-md py-sm bg-dark border border-[#2a2a2a] rounded-lg text-white focus:border-primary focus:outline-none"
                   disabled={loading}
                 />
                 <button
                   onClick={handleSendMessage}
                   disabled={loading}
-                  className="px-6 py-2 bg-primary text-dark font-bold rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50"
+                  className="px-md py-sm bg-primary text-dark font-bold rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50"
                 >
                   {loading ? '...' : 'Send'}
                 </button>
               </div>
             </div>
 
-            <div className="grid grid-cols-2 gap-4">
-              <div className="bg-dark-card p-4 rounded-lg border border-[#2a2a2a]">
-                <p className="text-text-secondary text-sm mb-2">Session ID</p>
+            <div className="grid grid-cols-2 gap-sm">
+              <div className="bg-dark-card p-sm rounded-lg border border-[#2a2a2a]">
+                <p className="text-text-secondary text-body mb-xs">Session ID</p>
                 <p className="text-white font-mono text-xs">{sessionId}</p>
               </div>
-              <div className="bg-dark-card p-4 rounded-lg border border-[#2a2a2a]">
-                <p className="text-text-secondary text-sm mb-2">Messages</p>
+              <div className="bg-dark-card p-sm rounded-lg border border-[#2a2a2a]">
+                <p className="text-text-secondary text-body mb-xs">Messages</p>
                 <p className="text-white font-bold text-xl">{chatHistory.length}</p>
               </div>
             </div>
@@ -215,9 +215,9 @@ export default function AgentsDashboard() {
 
       case 'product-discovery':
         return (
-          <div className="space-y-4">
-            <div className="bg-dark-card p-6 rounded-lg border border-[#2a2a2a]">
-              <h3 className="text-lg font-bold text-white mb-4">Intelligent Search</h3>
+          <div className="space-y-sm">
+            <div className="bg-dark-card p-md rounded-lg border border-[#2a2a2a]">
+              <h3 className="text-heading-sm font-bold text-white mb-sm">Intelligent Search</h3>
 
               <div className="flex items-center space-x-2 mb-4">
                 <input
@@ -226,33 +226,33 @@ export default function AgentsDashboard() {
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
                   placeholder="VD: gundam dưới 1 triệu đánh giá cao"
-                  className="flex-1 px-4 py-2 bg-dark border border-[#2a2a2a] rounded-lg text-white focus:border-primary focus:outline-none"
+                    className="flex-1 px-md py-sm bg-dark border border-[#2a2a2a] rounded-lg text-white focus:border-primary focus:outline-none"
                 />
                 <button
                   onClick={handleSearch}
                   disabled={loading}
-                  className="px-6 py-2 bg-primary text-dark font-bold rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50"
+                  className="px-md py-sm bg-primary text-dark font-bold rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50"
                 >
                   {loading ? '...' : 'Search'}
                 </button>
               </div>
 
               {searchResults && (
-                <div className="space-y-4">
-                  <div className="bg-dark p-4 rounded-lg">
-                    <h4 className="text-white font-bold mb-2">Results</h4>
-                    <p className="text-text-secondary text-sm">
+                <div className="space-y-sm">
+                  <div className="bg-dark p-sm rounded-lg">
+                    <h4 className="text-white font-bold mb-xs">Results</h4>
+                    <p className="text-text-secondary text-body">
                       Found {searchResults.products?.length || 0} products in{' '}
                       {searchResults.metadata?.processingTime}ms
                     </p>
                   </div>
 
                   {searchResults.products && searchResults.products.length > 0 && (
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-xs">
                       {searchResults.products.slice(0, 4).map((product) => (
                         <div
                           key={product._id}
-                          className="bg-dark p-3 rounded-lg flex items-center space-x-3"
+                          className="bg-dark p-xs rounded-lg flex items-center space-x-sm"
                         >
                           <img
                             src={product.thumbnail}
@@ -260,10 +260,10 @@ export default function AgentsDashboard() {
                             className="w-16 h-16 rounded object-cover"
                           />
                           <div className="flex-1">
-                            <p className="text-white text-sm font-medium line-clamp-1">
+                              <p className="text-white text-body font-medium line-clamp-1">
                               {product.name}
                             </p>
-                            <p className="text-primary text-sm font-bold">
+                            <p className="text-primary text-body font-bold">
                               {new Intl.NumberFormat('vi-VN', {
                                 style: 'currency',
                                 currency: 'VND',
@@ -282,9 +282,9 @@ export default function AgentsDashboard() {
 
       case 'data-enrichment':
         return (
-          <div className="space-y-4">
-            <div className="bg-dark-card p-6 rounded-lg border border-[#2a2a2a]">
-              <h3 className="text-lg font-bold text-white mb-4">Enrich Product Data</h3>
+          <div className="space-y-sm">
+            <div className="bg-dark-card p-md rounded-lg border border-[#2a2a2a]">
+              <h3 className="text-heading-sm font-bold text-white mb-sm">Enrich Product Data</h3>
 
               <div className="flex items-center space-x-2 mb-4">
                 <input
@@ -292,12 +292,12 @@ export default function AgentsDashboard() {
                   value={productId}
                   onChange={(e) => setProductId(e.target.value)}
                   placeholder="Enter Product ID"
-                  className="flex-1 px-4 py-2 bg-dark border border-[#2a2a2a] rounded-lg text-white focus:border-primary focus:outline-none"
+                    className="flex-1 px-md py-sm bg-dark border border-[#2a2a2a] rounded-lg text-white focus:border-primary focus:outline-none"
                 />
                 <button
                   onClick={handleEnrichProduct}
                   disabled={loading}
-                  className="px-6 py-2 bg-primary text-dark font-bold rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50"
+                  className="px-md py-sm bg-primary text-dark font-bold rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50"
                 >
                   {loading ? '...' : 'Enrich'}
                 </button>
@@ -306,14 +306,14 @@ export default function AgentsDashboard() {
               <button
                 onClick={handleBatchEnrich}
                 disabled={loading}
-                className="w-full px-4 py-2 bg-warning/20 text-warning border border-warning/30 rounded-lg hover:bg-warning/30 transition-colors disabled:opacity-50 mb-4"
+                className="w-full px-md py-sm bg-warning/20 text-warning border border-warning/30 rounded-lg hover:bg-warning/30 transition-colors disabled:opacity-50 mb-sm"
               >
                 <RefreshCw className="w-4 h-4 inline mr-2" />
                 Batch Enrich (50 products)
               </button>
 
               {enrichmentResult && (
-                <div className="bg-dark p-4 rounded-lg space-y-3">
+                <div className="bg-dark p-sm rounded-lg space-y-sm">
                   {enrichmentResult.processed && (
                     <div className="text-white">
                       <p className="font-bold">Processed: {enrichmentResult.processed} products</p>
@@ -322,7 +322,7 @@ export default function AgentsDashboard() {
 
                   {enrichmentResult.confidence && (
                     <div>
-                      <p className="text-text-secondary text-sm mb-2">Confidence Score</p>
+                      <p className="text-text-secondary text-body mb-xs">Confidence Score</p>
                       <div className="flex items-center space-x-2">
                         <div className="flex-1 bg-dark-card rounded-full h-2">
                           <div
@@ -341,10 +341,10 @@ export default function AgentsDashboard() {
 
                   {enrichmentResult.suggestions && (
                     <div>
-                      <p className="text-text-secondary text-sm mb-2">Suggestions</p>
-                      <ul className="space-y-1">
+                      <p className="text-text-secondary text-body mb-xs">Suggestions</p>
+                      <ul className="space-y-xs">
                         {enrichmentResult.suggestions.map((suggestion, idx) => (
-                          <li key={idx} className="text-white text-sm flex items-start">
+                          <li key={idx} className="text-white text-body flex items-start">>
                             <span className="text-primary mr-2">•</span>
                             {suggestion}
                           </li>
@@ -360,28 +360,28 @@ export default function AgentsDashboard() {
 
       case 'content-generation':
         return (
-          <div className="space-y-4">
-            <div className="bg-dark-card p-6 rounded-lg border border-[#2a2a2a]">
-              <h3 className="text-lg font-bold text-white mb-4">Generate Content</h3>
+          <div className="space-y-sm">
+            <div className="bg-dark-card p-md rounded-lg border border-[#2a2a2a]">
+              <h3 className="text-heading-sm font-bold text-white mb-sm">Generate Content</h3>
 
-              <div className="space-y-4">
+              <div className="space-y-sm">
                 <div>
-                  <label className="block text-text-secondary text-sm mb-2">Product ID</label>
+                  <label className="block text-text-secondary text-body mb-xs">Product ID</label>
                   <input
                     type="text"
                     value={contentProductId}
                     onChange={(e) => setContentProductId(e.target.value)}
                     placeholder="Enter Product ID"
-                    className="w-full px-4 py-2 bg-dark border border-[#2a2a2a] rounded-lg text-white focus:border-primary focus:outline-none"
+                      className="w-full px-md py-sm bg-dark border border-[#2a2a2a] rounded-lg text-white focus:border-primary focus:outline-none"
                   />
                 </div>
 
                 <div>
-                  <label className="block text-text-secondary text-sm mb-2">Content Type</label>
+                  <label className="block text-text-secondary text-body mb-xs">Content Type</label>
                   <select
                     value={contentType}
                     onChange={(e) => setContentType(e.target.value)}
-                    className="w-full px-4 py-2 bg-dark border border-[#2a2a2a] rounded-lg text-white focus:border-primary focus:outline-none"
+                      className="w-full px-md py-sm bg-dark border border-[#2a2a2a] rounded-lg text-white focus:border-primary focus:outline-none"
                   >
                     <option value="description">Full Description</option>
                     <option value="short-description">Short Description</option>
@@ -393,7 +393,7 @@ export default function AgentsDashboard() {
                 <button
                   onClick={handleGenerateContent}
                   disabled={loading}
-                  className="w-full px-4 py-2 bg-primary text-dark font-bold rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50"
+                  className="w-full px-md py-sm bg-primary text-dark font-bold rounded-lg hover:bg-primary/90 transition-colors disabled:opacity-50"
                 >
                   {loading ? 'Generating...' : 'Generate Content'}
                 </button>

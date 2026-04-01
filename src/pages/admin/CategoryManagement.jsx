@@ -81,12 +81,12 @@ export default function CategoryManagement() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-sm\">
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h2 className="text-2xl font-bold text-white">Category Management</h2>
-          <p className="text-text-secondary mt-1">Organize products by categories</p>
+          <h2 className="text-heading-lg font-bold text-white">Category Management</h2>
+          <p className="text-text-secondary mt-xs">Organize products by categories</p>
         </div>
         <button
           onClick={() => {
@@ -94,7 +94,7 @@ export default function CategoryManagement() {
             setFormData({ name: '', slug: '', description: '' });
             setShowModal(true);
           }}
-          className="flex items-center space-x-2 px-4 py-2 bg-primary text-dark font-bold rounded-lg hover:bg-primary/90 transition-colors"
+          className="flex items-center gap-sm px-md py-sm bg-primary text-dark font-bold rounded-lg hover:bg-primary/90 transition-colors"
         >
           <Plus className="w-5 h-5" />
           <span>Add Category</span>
@@ -108,36 +108,35 @@ export default function CategoryManagement() {
         ) : categories.length === 0 ? (
           <div className="p-8 text-center text-text-secondary">No categories found</div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 p-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-sm p-sm\">
             {categories.map((category) => (
               <div
                 key={category._id}
-                className="bg-dark p-6 rounded-lg border border-[#2a2a2a] hover:border-primary/50 transition-all group"
-              >
-                <div className="flex items-start justify-between mb-4">
+                className=\"bg-dark p-sm rounded-lg border border-[#2a2a2a] hover:border-primary/50 transition-all group\">
+                <div className=\"flex items-start justify-between mb-sm\">
                   <div className="w-12 h-12 bg-primary/20 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <FolderTree className="w-6 h-6 text-primary" />
+                    <FolderTree className="w-5 h-5 text-primary" />
                   </div>
-                  <div className="flex items-center space-x-2">
+                  <div className="flex items-center gap-xs">
                     <button
                       onClick={() => handleEdit(category)}
-                      className="p-2 text-text-secondary hover:text-warning hover:bg-dark-card rounded-lg transition-colors"
+                      className="p-xs text-text-secondary hover:text-warning hover:bg-dark-card rounded-lg transition-colors"
                     >
                       <Edit className="w-4 h-4" />
                     </button>
                     <button
                       onClick={() => handleDelete(category._id)}
-                      className="p-2 text-text-secondary hover:text-danger hover:bg-dark-card rounded-lg transition-colors"
+                      className="p-xs text-text-secondary hover:text-danger hover:bg-dark-card rounded-lg transition-colors"
                     >
                       <Trash2 className="w-4 h-4" />
                     </button>
                   </div>
                 </div>
 
-                <h3 className="text-white font-bold text-lg mb-2">{category.name}</h3>
-                <p className="text-text-secondary text-sm mb-3">/{category.slug}</p>
+                <h3 className=\"text-white font-bold text-heading-sm mb-xs\">{category.name}</h3>
+                <p className=\"text-text-secondary text-body mb-xs\">/{category.slug}</p>
                 {category.description && (
-                  <p className="text-text-secondary text-sm line-clamp-2">{category.description}</p>
+                  <p className="text-text-secondary text-body line-clamp-2">{category.description}</p>
                 )}
               </div>
             ))}
@@ -148,14 +147,14 @@ export default function CategoryManagement() {
       {/* Modal */}
       {showModal && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 p-4">
-          <div className="bg-dark-card rounded-lg border border-[#2a2a2a] max-w-md w-full p-6">
-            <h3 className="text-xl font-bold text-white mb-4">
+          <div className="bg-dark-card rounded-lg border border-[#2a2a2a] max-w-md w-full p-sm\">
+            <h3 className="text-xl font-bold text-white mb-sm\">
               {editingCategory ? 'Edit Category' : 'Add Category'}
             </h3>
 
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-sm">
               <div>
-                <label className="block text-text-secondary text-sm mb-2">Name *</label>
+                <label className="block text-text-secondary text-sm mb-xs">Name *</label>
                 <input
                   type="text"
                   required
@@ -173,7 +172,7 @@ export default function CategoryManagement() {
               </div>
 
               <div>
-                <label className="block text-text-secondary text-sm mb-2">Slug *</label>
+                <label className="block text-text-secondary text-sm mb-xs">Slug *</label>
                 <input
                   type="text"
                   required
@@ -185,7 +184,7 @@ export default function CategoryManagement() {
               </div>
 
               <div>
-                <label className="block text-text-secondary text-sm mb-2">Description</label>
+                <label className="block text-text-secondary text-sm mb-xs">Description</label>
                 <textarea
                   value={formData.description}
                   onChange={(e) => setFormData({ ...formData, description: e.target.value })}
@@ -195,7 +194,7 @@ export default function CategoryManagement() {
                 />
               </div>
 
-              <div className="flex items-center space-x-3 pt-4">
+              <div className=\"flex items-center space-x-2 pt-sm\">
                 <button
                   type="submit"
                   className="flex-1 px-4 py-2 bg-primary text-dark font-bold rounded-lg hover:bg-primary/90 transition-colors"

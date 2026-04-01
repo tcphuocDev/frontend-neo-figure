@@ -58,7 +58,7 @@ const ActivityItem = ({ activity, index }) => {
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       transition={{ delay: index * 0.05 }}
-      className="group relative flex gap-4 p-4 rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all duration-200 cursor-pointer"
+      className="group relative flex gap-4 p-sm rounded-xl hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-all duration-200 cursor-pointer"
     >
       {/* Timeline line */}
       {index !== 0 && (
@@ -109,7 +109,7 @@ const RecentActivity = ({ activities = [] }) => {
   return (
     <div className="bg-white dark:bg-gray-800/50 backdrop-blur-sm rounded-2xl border border-gray-100 dark:border-gray-700/50 overflow-hidden">
       {/* Header */}
-      <div className="flex items-center justify-between p-6 border-b border-gray-100 dark:border-gray-700/50">
+      <div className="flex items-center justify-between p-sm border-b border-gray-100 dark:border-gray-700/50">
         <div>
           <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Recent Activity</h3>
           <p className="text-sm text-gray-500 dark:text-gray-400 mt-0.5">
@@ -128,7 +128,7 @@ const RecentActivity = ({ activities = [] }) => {
             <ActivityItem key={activity.id || index} activity={activity} index={index} />
           ))
         ) : (
-          <div className="p-12 text-center">
+          <div className="p-8 text-center">
             <div className="w-16 h-16 bg-gray-100 dark:bg-gray-800 rounded-full flex items-center justify-center mx-auto mb-4">
               <Clock className="w-8 h-8 text-gray-400" />
             </div>

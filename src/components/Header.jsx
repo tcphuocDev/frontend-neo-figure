@@ -39,7 +39,7 @@ export default function Header() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 flex-shrink-0">
-            <div className="text-xl font-bold bg-gradient-to-r from-primary to-[#0088ff] bg-clip-text text-transparent">
+            <div className="text-3xl font-bold bg-gradient-to-r from-primary to-[#0088ff] bg-clip-text text-transparent">
               NEO FIGURE
             </div>
           </Link>
@@ -53,7 +53,7 @@ export default function Header() {
               } bg-dark-card transition-all duration-300`}
             >
               {/* Icon */}
-              <div className="flex items-center pl-4">
+              <div className="flex items-center px-md">
                 <Search className="w-4 h-4 text-text-secondary" />
               </div>
 
@@ -65,13 +65,13 @@ export default function Header() {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onFocus={() => setSearchFocused(true)}
                 onBlur={() => setSearchFocused(false)}
-                className="flex-1 px-3 bg-transparent outline-none text-white text-sm placeholder-text-secondary"
+                className="flex-1 px-sm bg-transparent outline-none text-white text-body placeholder-text-secondary"
               />
 
               {/* Button */}
               <button
                 type="submit"
-                className="px-6 bg-primary hover:bg-primary/90 text-dark text-sm font-semibold transition-all duration-300"
+                className="px-md bg-primary hover:bg-primary/90 text-dark text-body font-semibold transition-all duration-300"
               >
                 Tìm kiếm
               </button>
@@ -83,7 +83,7 @@ export default function Header() {
             {/* Categories Dropdown - Desktop */}
             <div className="hidden lg:block relative group">
               <button
-                className="flex items-center gap-1 px-3 py-2 text-sm text-text-secondary hover:text-primary hover:bg-dark-hover
+                className="flex items-center gap-sm px-sm py-xs text-body text-text-secondary hover:text-primary hover:bg-dark-hover
                rounded-lg transition-colors"
               >
                 Categories
@@ -94,7 +94,7 @@ export default function Header() {
                   <Link
                     key={idx}
                     to={cat.path}
-                    className="block px-4 py-2.5 text-sm text-text-secondary hover:text-primary hover:bg-dark-hover first:rounded-t-lg last:rounded-b-lg transition-colors"
+                    className="block px-md py-sm text-body text-text-secondary hover:text-primary hover:bg-dark-hover first:rounded-t-lg last:rounded-b-lg transition-colors"
                   >
                     {cat.name}
                   </Link>
@@ -105,7 +105,7 @@ export default function Header() {
             {/* Hot Deals */}
             <Link
               to="/products?isHot=true"
-              className="hidden md:flex items-center gap-1.5 px-3 py-2 text-sm font-semibold text-secondary hover:text-secondary/80 hover:bg-dark-hover rounded-lg transition-colors"
+              className="hidden md:flex items-center gap-sm px-sm py-xs text-body font-semibold text-secondary hover:text-secondary/80 hover:bg-dark-hover rounded-lg transition-colors"
             >
               <span className="text-base">🔥</span>
               Hot Deals
@@ -114,7 +114,7 @@ export default function Header() {
             {/* Cart Icon */}
             <Link
               to="/cart"
-              className="relative p-2 hover:bg-dark-hover rounded-lg transition-colors group"
+              className="relative p-xs hover:bg-dark-hover rounded-lg transition-colors group"
             >
               <ShoppingCart
                 className="w-5 h-5 text-primary group-hover:sc
@@ -137,7 +137,7 @@ a               le-110 transition-transform"
                 <button
                   onClick={() => setUserMenuOpen(!userMenuOpen)}
                   onBlur={() => setTimeout(() => setUserMenuOpen(false), 200)}
-                  className="flex items-center gap-2 px-3 py-2 hover:bg-dark-hover rounded-lg transition-colors group"
+                  className="flex items-center gap-sm px-sm py-xs hover:bg-dark-hover rounded-lg transition-colors group"
                 >
                   {user.avatar ? (
                     <img
@@ -153,7 +153,7 @@ a               le-110 transition-transform"
                       <User className="w-4 h-4 text-primary" />
                     </div>
                   )}
-                  <span className="text-sm text-white max-w-[100px] truncate">{user.name}</span>
+                  <span className="text-body text-white max-w-[100px] truncate">{user.name}</span>
                   <ChevronDown className="w-4 h-4 text-text-secondary" />
                 </button>
 
@@ -165,16 +165,16 @@ a               le-110 transition-transform"
                       exit={{ opacity: 0, y: -10 }}
                       className="absolute top-full right-0 mt-1 w-48 bg-dark-card border border-[#2a2a2a] rounded-lg shadow-xl overflow-hidden"
                     >
-                      <div className="px-4 py-3 border-b border-[#2a2a2a]">
-                        <p className="text-sm font-semibold text-white truncate">{user.name}</p>
-                        <p className="text-xs text-text-secondary truncate">{user.email}</p>
+                      <div className="px-md py-sm border-b border-[#2a2a2a]">
+                        <p className="text-body font-semibold text-white truncate">{user.name}</p>
+                        <p className="text-small-text text-text-secondary truncate">{user.email}</p>
                       </div>
                       <button
                         onClick={() => {
                           setUserMenuOpen(false);
                           // Navigate to profile page
                         }}
-                        className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-text-secondary hover:text-primary hover:bg-dark-hover transition-colors"
+                        className="w-full flex items-center gap-sm px-md py-sm text-body text-text-secondary hover:text-primary hover:bg-dark-hover transition-colors"
                       >
                         <Settings className="w-4 h-4" />
                         My Account
@@ -184,7 +184,7 @@ a               le-110 transition-transform"
                           logout();
                           setUserMenuOpen(false);
                         }}
-                        className="w-full flex items-center gap-2 px-4 py-2.5 text-sm text-secondary hover:text-secondary/80 hover:bg-dark-hover transition-colors"
+                        className="w-full flex items-center gap-sm px-md py-sm text-body text-secondary hover:text-secondary/80 hover:bg-dark-hover transition-colors"
                       >
                         <LogOut className="w-4 h-4" />
                         Logout
@@ -196,7 +196,7 @@ a               le-110 transition-transform"
             ) : (
               <Link
                 to="/auth"
-                className="hidden md:flex items-center gap-2 px-4 py-2 bg-primary hover:bg-primary/90 text-dark font-semibold rounded-lg transition-colors text-sm"
+                className="hidden md:flex items-center gap-sm px-md py-xs bg-primary hover:bg-primary/90 text-dark font-semibold rounded-lg transition-colors text-body"
               >
                 <User className="w-4 h-4" />
                 Login
@@ -218,37 +218,37 @@ a               le-110 transition-transform"
         </div>
 
         {/* Quick Navigation - Desktop Only */}
-        <nav className="hidden md:flex items-center gap-6 py-2 text-xs border-t border-[#2a2a2a] align-center justify-center">
-          <Link to="/products" className="text-text-secondary hover:text-primary transition-colors">
+        <nav className="hidden md:flex items-center gap-md py-sm text-body border-t border-[#2a2a2a] overflow-hidden whitespace-nowrap px-sm justify-center">
+          <Link to="/products" className="text-text-secondary hover:text-primary transition-colors flex-shrink-0">
             All Products
           </Link>
           <Link
             to="/products?category=gundam"
-            className="text-text-secondary hover:text-primary transition-colors"
+            className="text-text-secondary hover:text-primary transition-colors flex-shrink-0"
           >
             Gundam
           </Link>
           <Link
             to="/products?category=anime-figure"
-            className="text-text-secondary hover:text-primary transition-colors"
+            className="text-text-secondary hover:text-primary transition-colors flex-shrink-0"
           >
             Anime Figures
           </Link>
           <Link
             to="/products?category=nendoroid"
-            className="text-text-secondary hover:text-primary transition-colors"
+            className="text-text-secondary hover:text-primary transition-colors flex-shrink-0"
           >
             Nendoroid
           </Link>
           <Link
             to="/products?category=figma"
-            className="text-text-secondary hover:text-primary transition-colors"
+            className="text-text-secondary hover:text-primary transition-colors flex-shrink-0"
           >
             Figma
           </Link>
           <Link
             to="/products?isFeatured=true"
-            className="text-primary hover:text-primary/80 transition-colors font-semibold"
+            className="text-primary hover:text-primary/80 transition-colors font-semibold flex-shrink-0"
           >
             ⭐ Featured
           </Link>
@@ -264,18 +264,18 @@ a               le-110 transition-transform"
             exit={{ height: 0, opacity: 0 }}
             className="md:hidden border-t border-[#2a2a2a] bg-dark-card"
           >
-            <div className="px-4 py-4 space-y-3">
+            <div className="px-md py-sm gap-xs flex flex-col">
               {/* Mobile Search */}
-              <form onSubmit={handleSearch} className="mb-2">
+              <form onSubmit={handleSearch} className="mb-sm">
                 <div className="relative">
                   <input
                     type="text"
                     placeholder="Search..."
                     value={searchQuery}
                     onChange={(e) => setSearchQuery(e.target.value)}
-                    className="w-full h-10 px-4 pl-10 bg-dark rounded-lg border border-[#2a2a2a] focus:border-primary focus:outline-none text-white text-sm placeholder-text-secondary"
+                    className="w-full h-10 px-md pl-10 bg-dark rounded-lg border border-[#2a2a2a] focus:border-primary focus:outline-none text-white text-body placeholder-text-secondary"
                   />
-                  <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary" />
+                  <Search className="absolute left-md top-1/2 -translate-y-1/2 w-4 h-4 text-text-secondary" />
                 </div>
               </form>
 
@@ -284,7 +284,7 @@ a               le-110 transition-transform"
                 <Link
                   key={idx}
                   to={cat.path}
-                  className="block py-2 text-sm text-text-secondary hover:text-primary transition-colors"
+                  className="block py-sm text-body text-text-secondary hover:text-primary transition-colors"
                   onClick={() => setMobileMenuOpen(false)}
                 >
                   {cat.name}
@@ -292,14 +292,14 @@ a               le-110 transition-transform"
               ))}
               <Link
                 to="/products?isHot=true"
-                className="block py-2 text-sm text-secondary hover:text-secondary/80 font-semibold transition-colors"
+                className="block py-sm text-body text-secondary hover:text-secondary/80 font-semibold transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 🔥 Hot Deals
               </Link>
               <Link
                 to="/products?isFeatured=true"
-                className="block py-2 text-sm text-primary hover:text-primary/80 font-semibold transition-colors"
+                className="block py-sm text-body text-primary hover:text-primary/80 font-semibold transition-colors"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 ⭐ Featured
@@ -308,8 +308,8 @@ a               le-110 transition-transform"
               {/* Mobile User Menu */}
               {user ? (
                 <>
-                  <div className="border-t border-[#2a2a2a] pt-3 mt-3">
-                    <div className="flex items-center gap-2 mb-3">
+                  <div className="border-t border-[#2a2a2a] pt-sm mt-sm">
+                    <div className="flex items-center gap-sm mb-sm">
                       {user.avatar ? (
                         <img
                           src={user.avatar}
@@ -322,8 +322,8 @@ a               le-110 transition-transform"
                         </div>
                       )}
                       <div>
-                        <p className="text-sm font-semibold text-white">{user.name}</p>
-                        <p className="text-xs text-text-secondary">{user.email}</p>
+                        <p className="text-body font-semibold text-white">{user.name}</p>
+                        <p className="text-small-text text-text-secondary">{user.email}</p>
                       </div>
                     </div>
                     <button
@@ -331,7 +331,7 @@ a               le-110 transition-transform"
                         // Navigate to profile
                         setMobileMenuOpen(false);
                       }}
-                      className="w-full flex items-center gap-2 py-2 text-sm text-text-secondary hover:text-primary transition-colors"
+                      className="w-full flex items-center gap-sm py-sm text-body text-text-secondary hover:text-primary transition-colors"
                     >
                       <Settings className="w-4 h-4" />
                       My Account
@@ -341,7 +341,7 @@ a               le-110 transition-transform"
                         logout();
                         setMobileMenuOpen(false);
                       }}
-                      className="w-full flex items-center gap-2 py-2 text-sm text-secondary hover:text-secondary/80 transition-colors"
+                      className="w-full flex items-center gap-sm py-sm text-body text-secondary hover:text-secondary/80 transition-colors"
                     >
                       <LogOut className="w-4 h-4" />
                       Logout

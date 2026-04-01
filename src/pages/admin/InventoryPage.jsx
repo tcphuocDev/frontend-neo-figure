@@ -202,7 +202,7 @@ const InventoryPage = () => {
   const outOfStockItems = inventory.filter((item) => item.stock === 0).length;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-sm">
       {/* Page Header */}
       <div className="flex items-center justify-between">
         <div>
@@ -226,11 +226,11 @@ const InventoryPage = () => {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-sm">
         <div className="bg-background-card dark:bg-gray-800 rounded-xl shadow-sm border border-border dark:border-gray-700 p-6">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-primary-light rounded-lg">
-              <Package className="w-5 h-5 text-primary" />
+          <div className="flex items-center gap-xs mb-xs">
+            <div className="p-xs bg-primary-light rounded-lg">
+              <Package className="w-4 h-4 text-primary" />
             </div>
             <p className="text-sm font-medium text-text-secondary dark:text-gray-400">
               Total Items
@@ -240,10 +240,10 @@ const InventoryPage = () => {
             {inventory.length}
           </p>
         </div>
-        <div className="bg-background-card dark:bg-gray-800 rounded-xl shadow-sm border border-border dark:border-gray-700 p-6">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-success/10 rounded-lg">
-              <TrendingUp className="w-5 h-5 text-success" />
+        <div className="bg-background-card dark:bg-gray-800 rounded-xl shadow-sm border border-border dark:border-gray-700 p-sm">
+          <div className="flex items-center gap-xs mb-xs">
+            <div className="p-xs bg-success/10 rounded-lg">
+              <TrendingUp className="w-4 h-4 text-success" />
             </div>
             <p className="text-sm font-medium text-text-secondary dark:text-gray-400">
               Total Value
@@ -253,10 +253,10 @@ const InventoryPage = () => {
             {formatPrice(totalValue)}
           </p>
         </div>
-        <div className="bg-background-card dark:bg-gray-800 rounded-xl shadow-sm border border-border dark:border-gray-700 p-6">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-warning/10 rounded-lg">
-              <AlertCircle className="w-5 h-5 text-warning" />
+        <div className="bg-background-card dark:bg-gray-800 rounded-xl shadow-sm border border-border dark:border-gray-700 p-sm">
+          <div className="flex items-center gap-xs mb-xs">
+            <div className="p-xs bg-warning/10 rounded-lg">
+              <AlertCircle className="w-4 h-4 text-warning" />
             </div>
             <p className="text-sm font-medium text-text-secondary dark:text-gray-400">
               Low Stock
@@ -266,10 +266,10 @@ const InventoryPage = () => {
             {lowStockItems}
           </p>
         </div>
-        <div className="bg-background-card dark:bg-gray-800 rounded-xl shadow-sm border border-border dark:border-gray-700 p-6">
-          <div className="flex items-center gap-3 mb-2">
-            <div className="p-2 bg-error/10 rounded-lg">
-              <TrendingDown className="w-5 h-5 text-error" />
+        <div className="bg-background-card dark:bg-gray-800 rounded-xl shadow-sm border border-border dark:border-gray-700 p-sm">
+          <div className="flex items-center gap-xs mb-xs">
+            <div className="p-xs bg-error/10 rounded-lg">
+              <TrendingDown className="w-4 h-4 text-error" />
             </div>
             <p className="text-sm font-medium text-text-secondary dark:text-gray-400">
               Out of Stock
@@ -296,8 +296,8 @@ const InventoryPage = () => {
         title={editingItem ? 'Edit Inventory Item' : 'Add New Item'}
         size="lg"
       >
-        <form className="space-y-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <form className="space-y-sm">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-sm\">
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 SKU
@@ -321,7 +321,7 @@ const InventoryPage = () => {
               />
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-sm\">
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Stock Quantity
@@ -356,7 +356,7 @@ const InventoryPage = () => {
               />
             </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-sm\">
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                 Cost Price (VNĐ)
@@ -391,7 +391,7 @@ const InventoryPage = () => {
               defaultValue={editingItem?.supplier}
             />
           </div>
-          <div className="flex justify-end gap-3 pt-4">
+          <div className="flex justify-end gap-2 pt-sm\">
             <button
               type="button"
               onClick={() => setIsModalOpen(false)}

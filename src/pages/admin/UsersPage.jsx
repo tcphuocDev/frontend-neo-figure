@@ -71,7 +71,7 @@ const UsersPage = () => {
 
     return (
       <span
-        className={`px-3 py-1 rounded-full text-xs font-medium ${styles[role]}`}
+        className={`px-sm py-xs rounded-full text-body font-medium ${styles[role]}`}
       >
         {role.charAt(0).toUpperCase() + role.slice(1)}
       </span>
@@ -86,7 +86,7 @@ const UsersPage = () => {
 
     return (
       <span
-        className={`px-3 py-1 rounded-full text-xs font-medium ${styles[status]}`}
+        className={`px-sm py-xs rounded-full text-body font-medium ${styles[status]}`}
       >
         {status.charAt(0).toUpperCase() + status.slice(1)}
       </span>
@@ -287,7 +287,7 @@ const UsersPage = () => {
         title={editingUser ? 'Edit User' : 'Add New User'}
         size="lg"
       >
-        <form className="space-y-4">
+        <form className="space-y-sm">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
             <div>
               <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">

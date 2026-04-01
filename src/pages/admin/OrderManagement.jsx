@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from 'react';
-import { Search, Eye, Check, X, Truck, Clock, CheckCircle } from 'lucide-react';
+import { Eye, Check, X, Truck, Clock, CheckCircle } from 'lucide-react';
 import { getOrders } from '../../services/api';
 import { adminApi } from '../../services/adminApi';
 import OrderDetailModal from '../../components/admin/OrderDetailModal';
@@ -124,15 +124,15 @@ export default function OrderManagement() {
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-md">
       {/* Header */}
       <div>
-        <h2 className="text-2xl font-bold text-white">Order Management</h2>
-        <p className="text-text-secondary mt-1">Manage customer orders</p>
+        <h2 className="text-heading-lg font-bold text-white">Order Management</h2>
+        <p className="text-text-secondary mt-xs">Manage customer orders</p>
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-md">
         {[
           { label: 'All Orders', value: statusCounts.all, status: 'all' },
           { label: 'Pending', value: statusCounts.pending, status: 'pending' },
@@ -142,7 +142,7 @@ export default function OrderManagement() {
           <button
             key={stat.status}
             onClick={() => setStatusFilter(stat.status)}
-            className={`p-4 rounded-lg border transition-all ${
+            className={`p-md rounded-lg border transition-all ${
               statusFilter === stat.status
                 ? 'bg-primary/20 border-primary'
                 : 'bg-dark-card border-[#2a2a2a] hover:border-primary/50'
@@ -155,22 +155,19 @@ export default function OrderManagement() {
       </div>
 
       {/* Search */}
-      <div className="bg-dark-card p-4 rounded-lg border border-[#2a2a2a]">
-        <div className="flex items-center space-x-4">
-          <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-text-secondary" />
-            <input
-              type="text"
-              placeholder="Search by customer name, phone, or order ID..."
-              value={searchTerm}
-              onChange={(e) => setSearchTerm(e.target.value)}
-              onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
-              className="w-full pl-10 pr-4 py-2 bg-dark border border-[#2a2a2a] rounded-lg text-white focus:border-primary focus:outline-none"
-            />
-          </div>
+      <div className="bg-dark-card p-sm rounded-lg border border-[#2a2a2a]">
+        <div className="flex items-center space-x-sm">
+          <input
+            type="text"
+            placeholder="Search by customer name, phone, or order ID..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
+            className="flex-1 px-sm py-xs bg-dark border border-[#2a2a2a] rounded-lg text-sm text-white focus:border-primary focus:outline-none"
+          />
           <button
             onClick={handleSearch}
-            className="px-6 py-2 bg-primary text-dark font-bold rounded-lg hover:bg-primary/90 transition-colors"
+            className="px-md py-xs bg-primary text-dark font-bold rounded-lg text-sm hover:bg-primary/90 transition-colors"
           >
             Search
           </button>

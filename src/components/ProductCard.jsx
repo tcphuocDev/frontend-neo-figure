@@ -58,12 +58,12 @@ export default function ProductCard({ product }) {
           />
 
           {/* Badges - Top Left */}
-          <div className="absolute top-2 left-2 flex flex-col gap-1.5 z-10">
+          <div className="absolute top-xs left-xs flex flex-col gap-xs z-10">
             {discount > 0 && (
               <motion.span
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
-                className="bg-secondary text-white text-xs font-bold px-2 py-1 rounded shadow-lg"
+                className="bg-secondary text-white text-small-text font-bold px-sm py-xs rounded shadow-lg"
               >
                 -{discount}%
               </motion.span>
@@ -73,7 +73,7 @@ export default function ProductCard({ product }) {
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 transition={{ delay: 0.1 }}
-                className="bg-gradient-to-r from-red-500 to-red-600 text-white text-xs font-bold px-2 py-1 rounded shadow-lg"
+                className="bg-gradient-to-r from-red-500 to-red-600 text-white text-small-text font-bold px-sm py-xs rounded shadow-lg"
               >
                 🔥 HOT
               </motion.span>
@@ -83,7 +83,7 @@ export default function ProductCard({ product }) {
           {/* Add to Cart Button - Visible on Hover */}
           <motion.button
             onClick={handleAddToCart}
-            className="absolute bottom-2 right-2 w-9 h-9 bg-primary hover:bg-primary/90 text-dark rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg z-10"
+            className="absolute bottom-xs right-xs w-9 h-9 bg-primary hover:bg-primary/90 text-dark rounded-lg flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg z-10"
             whileTap={{ scale: 0.9 }}
           >
             <ShoppingCart className="w-4 h-4" />
@@ -92,7 +92,7 @@ export default function ProductCard({ product }) {
           {/* Out of Stock Overlay */}
           {!product.inStock && (
             <div className="absolute inset-0 bg-black/80 flex items-center justify-center z-20">
-              <span className="text-white font-bold text-sm bg-secondary px-3 py-1.5 rounded">
+              <span className="text-white font-bold text-body bg-secondary px-sm py-xs rounded">
                 Out of Stock
               </span>
             </div>
@@ -100,15 +100,15 @@ export default function ProductCard({ product }) {
         </div>
 
         {/* Product Info - Compact */}
-        <div className="p-3 flex-1 flex flex-col">
+        <div className="p-sm flex-1 flex flex-col gap-sm">
           {/* Product Name - Smaller than price */}
-          <h3 className="text-white text-sm font-medium mb-2 line-clamp-2 group-hover:text-primary transition-colors leading-tight">
+          <h3 className="text-white text-body font-medium line-clamp-2 group-hover:text-primary transition-colors leading-tight">
             {product.name}
           </h3>
 
           {/* Rating & Sold - Small and compact */}
-          <div className="flex items-center gap-3 mb-2 text-xs text-text-secondary">
-            <div className="flex items-center gap-1">
+          <div className="flex items-center gap-md text-small-text text-text-secondary">
+            <div className="flex items-center gap-xs">
               <Star className="w-3 h-3 fill-yellow-400 text-yellow-400" />
               <span>{product.rating.toFixed(1)}</span>
             </div>
@@ -119,12 +119,12 @@ export default function ProductCard({ product }) {
 
           {/* Price - Bold and large emphasis */}
           <div className="mt-auto">
-            <div className="flex items-baseline gap-2 mb-1">
+            <div className="flex items-baseline gap-sm">
               <div className="text-primary font-bold text-xl leading-none">
                 {formatPrice(product.price)}
               </div>
               {product.originalPrice && (
-                <div className="text-text-muted line-through text-xs">
+                <div className="text-text-muted line-through text-small-text">
                   {formatPrice(product.originalPrice)}
                 </div>
               )}

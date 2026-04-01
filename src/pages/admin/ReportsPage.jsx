@@ -36,29 +36,29 @@ const ReportsPage = () => {
   const avgOrderValue = totalRevenue / totalOrders;
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-md">
       {/* Page Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-text-primary dark:text-white mb-1">
+          <h1 className="text-heading-lg font-bold text-text-primary dark:text-white mb-xs">
             Reports & Analytics
           </h1>
           <p className="text-text-secondary dark:text-gray-400">
             View detailed reports and insights about your business
           </p>
         </div>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-sm">
           <select
             value={dateRange}
             onChange={(e) => setDateRange(e.target.value)}
-            className="px-4 py-2.5 border border-border dark:border-gray-600 rounded-lg bg-background-card dark:bg-gray-700 text-text-primary dark:text-white focus:ring-2 focus:ring-primary outline-none transition-all"
+            className="px-md py-sm border border-border dark:border-gray-600 rounded-lg bg-background-card dark:bg-gray-700 text-text-primary dark:text-white focus:ring-2 focus:ring-primary outline-none transition-all"
           >
             <option value="7days">Last 7 days</option>
             <option value="30days">Last 30 days</option>
             <option value="3months">Last 3 months</option>
             <option value="year">This year</option>
           </select>
-          <button className="inline-flex items-center gap-2 px-4 py-2.5 bg-primary hover:bg-primary-hover text-white rounded-lg transition-all duration-200 font-medium shadow-md hover:shadow-lg">
+          <button className="inline-flex items-center gap-sm px-md py-sm bg-primary hover:bg-primary-hover text-white rounded-lg transition-all duration-200 font-medium shadow-md hover:shadow-lg">
             <Download className="w-5 h-5" />
             Export Report
           </button>
@@ -66,7 +66,7 @@ const ReportsPage = () => {
       </div>
 
       {/* Stats Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-md">
         <StatCard
           title="Total Revenue"
           value={formatPrice(totalRevenue)}
@@ -102,14 +102,14 @@ const ReportsPage = () => {
       </div>
 
       {/* Charts */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-md">
         <RevenueChart data={salesData} />
         <OrdersChart data={salesData} />
       </div>
 
       {/* Top Products */}
-      <div className="bg-background-card dark:bg-gray-800 rounded-xl shadow-sm border border-border dark:border-gray-700 p-6">
-        <h3 className="text-lg font-semibold text-text-primary dark:text-white mb-6">
+      <div className="bg-background-card dark:bg-gray-800 rounded-xl shadow-sm border border-border dark:border-gray-700 p-md">
+        <h3 className="text-heading-sm font-semibold text-text-primary dark:text-white mb-md">
           Top Selling Products
         </h3>
         <div className="space-y-4">
@@ -118,7 +118,7 @@ const ReportsPage = () => {
               key={index}
               className="flex items-center justify-between pb-4 border-b border-border dark:border-gray-800 last:border-0 last:pb-0"
             >
-              <div className="flex items-center gap-4">
+              <div className="flex items-center gap-sm">
                 <div className="flex items-center justify-center w-10 h-10 bg-primary rounded-lg text-white font-bold shadow-md">
                   {index + 1}
                 </div>
@@ -126,7 +126,7 @@ const ReportsPage = () => {
                   <p className="font-medium text-text-primary dark:text-white">
                     {product.name}
                   </p>
-                  <p className="text-sm text-text-secondary dark:text-gray-400">
+                  <p className="text-body text-text-secondary dark:text-gray-400">
                     {product.sales} units sold
                   </p>
                 </div>
@@ -143,12 +143,12 @@ const ReportsPage = () => {
       </div>
 
       {/* Sales by Category */}
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="bg-background-card dark:bg-gray-800 rounded-xl shadow-sm border border-border dark:border-gray-700 p-6">
-          <h3 className="text-lg font-semibold text-text-primary dark:text-white mb-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-md">
+        <div className="bg-background-card dark:bg-gray-800 rounded-xl shadow-sm border border-border dark:border-gray-700 p-md">
+          <h3 className="text-heading-sm font-semibold text-text-primary dark:text-white mb-md">
             Sales by Category
           </h3>
-          <div className="space-y-4">
+          <div className="space-y-sm">
             {[
               { category: 'Gundam', percentage: 35, revenue: 87500000 },
               { category: 'One Piece', percentage: 25, revenue: 62500000 },
@@ -156,8 +156,8 @@ const ReportsPage = () => {
               { category: 'Dragon Ball', percentage: 15, revenue: 37500000 },
               { category: 'Others', percentage: 5, revenue: 12500000 },
             ].map((item, index) => (
-              <div key={index} className="space-y-2">
-                <div className="flex items-center justify-between text-sm">
+              <div key={index} className="space-y-xs">
+                <div className="flex items-center justify-between text-body">
                   <span className="font-medium text-text-primary dark:text-white">
                     {item.category}
                   </span>
@@ -171,7 +171,7 @@ const ReportsPage = () => {
                     style={{ width: `${item.percentage}%` }}
                   />
                 </div>
-                <p className="text-xs text-text-secondary dark:text-gray-400">
+                <p className="text-small-text text-text-secondary dark:text-gray-400">
                   {formatPrice(item.revenue)}
                 </p>
               </div>
@@ -183,27 +183,27 @@ const ReportsPage = () => {
           <h3 className="text-lg font-semibold text-text-primary dark:text-white mb-6">
             Customer Insights
           </h3>
-          <div className="space-y-6">
+          <div className="space-y-md">
             <div>
-              <div className="flex items-center justify-between mb-3">
-                <p className="text-sm font-medium text-text-secondary dark:text-gray-400">
+              <div className="flex items-center justify-between mb-xs">
+                <p className="text-body font-medium text-text-secondary dark:text-gray-400">
                   New Customers
                 </p>
                 <p className="text-2xl font-bold text-text-primary dark:text-white">
                   142
                 </p>
               </div>
-              <div className="flex items-center gap-2 text-sm text-success">
+              <div className="flex items-center gap-sm text-body text-success">
                 <TrendingUp className="w-4 h-4" />
                 <span>+12.1% from last period</span>
               </div>
             </div>
             <div>
-              <div className="flex items-center justify-between mb-3">
-                <p className="text-sm font-medium text-text-secondary dark:text-gray-400">
+              <div className="flex items-center justify-between mb-xs">
+                <p className="text-body font-medium text-text-secondary dark:text-gray-400">
                   Returning Customers
                 </p>
-                <p className="text-2xl font-bold text-text-primary dark:text-white">
+                <p className="text-heading-md font-bold text-text-primary dark:text-white">
                   68%
                 </p>
               </div>
@@ -215,15 +215,15 @@ const ReportsPage = () => {
               </div>
             </div>
             <div>
-              <div className="flex items-center justify-between mb-3">
-                <p className="text-sm font-medium text-text-secondary dark:text-gray-400">
+              <div className="flex items-center justify-between mb-xs">
+                <p className="text-body font-medium text-text-secondary dark:text-gray-400">
                   Customer Satisfaction
                 </p>
-                <p className="text-2xl font-bold text-text-primary dark:text-white">
+                <p className="text-heading-md font-bold text-text-primary dark:text-white">
                   4.8/5
                 </p>
               </div>
-              <div className="flex items-center gap-1">
+              <div className="flex items-center gap-xs">
                 {[...Array(5)].map((_, i) => (
                   <svg
                     key={i}

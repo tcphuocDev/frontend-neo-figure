@@ -72,6 +72,16 @@ export default {
       spacing: {
         18: '4.5rem',
         88: '22rem',
+        'xs': '8px',
+        'sm': '12px',
+        'md': '16px',
+      },
+      fontSize: {
+        'body': '13px',
+        'sm-custom': '12px',
+        'heading-sm': '16px',
+        'heading-md': '18px',
+        'heading-lg': '20px',
       },
       animation: {
         'fade-in': 'fadeIn 0.5s ease-in-out',
