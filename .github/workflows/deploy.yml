@@ -27,7 +27,7 @@ jobs:
             export PATH=$PATH:/usr/local/bin
 
             # ===== FIX SSH GIT =====
-            export GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed25519 -o StrictHostKeyChecking=no"
+            export GIT_SSH_COMMAND="ssh -i ~/.ssh/id_ed255s19 -o StrictHostKeyChecking=no"
 
             # ===== GO TO PROJECT =====
             cd /root/neo-fiugure/frontend-neo-figure
