@@ -54,8 +54,8 @@ export function AuthProvider({ children }) {
       });
 
       if (!res.ok) {
-        const error = await res.json();
-        throw new Error(error.message || "Registration failed");
+        const errorData = await res.json().catch(() => ({}));
+        throw new Error(errorData.message || `Registration failed (${res.status})`);
       }
 
       const data = await res.json();
@@ -65,6 +65,11 @@ export function AuthProvider({ children }) {
       navigate("/");
       return data;
     } catch (error) {
+      console.error("Register error:", error);
+      // Handle network errors
+      if (error.message === "Failed to fetch" || error.name === "TypeError") {
+        throw new Error("Cannot connect to server. Please check your network connection.");
+      }
       throw error;
     }
   };
