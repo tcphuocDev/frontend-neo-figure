@@ -36,6 +36,12 @@ const adminApi = {
   // Crawler
   runCrawler: (pages) => api.get(`/crawler/run?pages=${pages}`),
   crawlAll: () => api.get('/crawler/danfigure'),
+
+  // Reports
+  getDashboardStats: () => api.get('/reports/dashboard'),
+  getRevenue: (period = '7d') => api.get(`/reports/revenue?period=${period}`),
+  getOrdersStats: (period = '7d') => api.get(`/reports/orders-stats?period=${period}`),
+  getTopProducts: (limit = 10) => api.get(`/reports/top-products?limit=${limit}`),
 };
 
 // Agent API endpoints

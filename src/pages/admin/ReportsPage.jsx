@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   Download,
   TrendingUp,
@@ -9,31 +9,84 @@ import {
 import { RevenueChart, OrdersChart } from '../../components/admin/Chart';
 import StatCard from '../../components/admin/StatCard';
 import { formatPrice } from '../../utils/adminUtils';
+import { adminApi } from '../../services/adminApi';
 
 const ReportsPage = () => {
   const [dateRange, setDateRange] = useState('7days');
+  const [loading, setLoading] = useState(true);
+  const [dashboardStats, setDashboardStats] = useState({});
+  const [salesData, setSalesData] = useState([]);
+  const [topProducts, setTopProducts] = useState([]);
 
-  const [salesData] = useState([
-    { name: 'Mon', revenue: 12500000, orders: 45 },
-    { name: 'Tue', revenue: 15200000, orders: 52 },
-    { name: 'Wed', revenue: 11800000, orders: 38 },
-    { name: 'Thu', revenue: 18400000, orders: 61 },
-    { name: 'Fri', revenue: 21500000, orders: 73 },
-    { name: 'Sat', revenue: 25300000, orders: 85 },
-    { name: 'Sun', revenue: 20600000, orders: 68 },
-  ]);
+  // Map dateRange to API period parameter
+  const getPeriodParam = (range) => {
+    const periodMap = {
+      '7days': '7d',
+      '30days': '30d',
+      '3months': '90d',
+      'year': '365d',
+    };
+    return periodMap[range] || '7d';
+  };
 
-  const [topProducts] = useState([
-    { name: 'Gundam RX-78-2', sales: 125, revenue: 156250000 },
-    { name: 'One Piece Luffy', sales: 98, revenue: 83300000 },
-    { name: 'Naruto Uzumaki', sales: 76, revenue: 159600000 },
-    { name: 'Dragon Ball Goku', sales: 64, revenue: 92800000 },
-    { name: 'Evangelion Unit-01', sales: 52, revenue: 166400000 },
-  ]);
+  useEffect(() => {
+    fetchReportsData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dateRange]);
 
-  const totalRevenue = salesData.reduce((sum, day) => sum + day.revenue, 0);
-  const totalOrders = salesData.reduce((sum, day) => sum + day.orders, 0);
-  const avgOrderValue = totalRevenue / totalOrders;
+  const fetchReportsData = async () => {
+    setLoading(true);
+    try {
+      const period = getPeriodParam(dateRange);
+
+      const [stats, revenue, ordersStats, products] = await Promise.all([
+        adminApi.getDashboardStats(),
+        adminApi.getRevenue(period),
+        adminApi.getOrdersStats(period),
+        adminApi.getTopProducts(5),
+      ]);
+
+      setDashboardStats(stats.data);
+
+      // Combine revenue and orders data
+      const combined = revenue.data.map(r => {
+        const orderData = ordersStats.data.find(o => o.date === r.date);
+        return {
+          name: new Date(r.date).toLocaleDateString('en-US', { weekday: 'short' }),
+          revenue: r.revenue,
+          orders: orderData?.count || 0,
+        };
+      });
+      setSalesData(combined);
+
+      // Format top products
+      const formattedProducts = products.data.map(p => ({
+        name: p.name,
+        sales: p.soldCount,
+        revenue: p.price * p.soldCount,
+      }));
+      setTopProducts(formattedProducts);
+    } catch (error) {
+      console.error('Error fetching reports:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const totalRevenue = salesData.reduce((sum, day) => sum + (day.revenue || 0), 0);
+  const totalOrders = salesData.reduce((sum, day) => sum + (day.orders || 0), 0);
+  const avgOrderValue = totalOrders > 0 ? totalRevenue / totalOrders : 0;
+
+  if (loading && salesData.length === 0) {
+    return (
+      <div className="flex items-center justify-center h-full">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+          <p className="text-gray-600 dark:text-gray-400">Loading reports...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="space-y-md">

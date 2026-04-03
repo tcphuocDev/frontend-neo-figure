@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
-import { Plus, Package, Users, ShoppingCart, Settings, ArrowRight } from 'lucide-react';
+import { Plus, Package, ShoppingCart, FileText, ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const QuickAction = ({ icon: Icon, label, description, color, onClick }) => {
   const colorClasses = {
@@ -46,34 +47,36 @@ const QuickAction = ({ icon: Icon, label, description, color, onClick }) => {
 };
 
 const QuickActions = () => {
+  const navigate = useNavigate();
+
   const actions = [
     {
       icon: Plus,
       label: 'Add Product',
       description: 'Create a new product listing',
       color: 'blue',
-      onClick: () => console.log('Add product'),
+      onClick: () => navigate('/admin/products/new'),
+    },
+    {
+      icon: Package,
+      label: 'Manage Products',
+      description: 'View and edit all products',
+      color: 'purple',
+      onClick: () => navigate('/admin/products'),
     },
     {
       icon: ShoppingCart,
-      label: 'New Order',
-      description: 'Process a manual order',
-      color: 'purple',
-      onClick: () => console.log('New order'),
-    },
-    {
-      icon: Users,
-      label: 'Add Customer',
-      description: 'Register a new customer',
+      label: 'View Orders',
+      description: 'Check and manage orders',
       color: 'emerald',
-      onClick: () => console.log('Add customer'),
+      onClick: () => navigate('/admin/orders'),
     },
     {
-      icon: Settings,
-      label: 'Settings',
-      description: 'Configure your store',
+      icon: FileText,
+      label: 'Reports',
+      description: 'View analytics and reports',
       color: 'orange',
-      onClick: () => console.log('Settings'),
+      onClick: () => navigate('/admin/reports'),
     },
   ];
 

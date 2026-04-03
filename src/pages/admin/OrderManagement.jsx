@@ -78,27 +78,32 @@ export default function OrderManagement() {
     const badges = {
       pending: {
         icon: Clock,
-        color: 'warning',
+        bgClass: 'bg-yellow-100 dark:bg-yellow-900/20',
+        textClass: 'text-yellow-700 dark:text-yellow-400',
         text: 'Pending',
       },
       paid: {
         icon: CheckCircle,
-        color: 'success',
+        bgClass: 'bg-green-100 dark:bg-green-900/20',
+        textClass: 'text-green-700 dark:text-green-400',
         text: 'Paid',
       },
       shipped: {
         icon: Truck,
-        color: 'primary',
+        bgClass: 'bg-blue-100 dark:bg-blue-900/20',
+        textClass: 'text-blue-700 dark:text-blue-400',
         text: 'Shipped',
       },
       delivered: {
         icon: Check,
-        color: 'success',
+        bgClass: 'bg-green-100 dark:bg-green-900/20',
+        textClass: 'text-green-700 dark:text-green-400',
         text: 'Delivered',
       },
       cancelled: {
         icon: X,
-        color: 'danger',
+        bgClass: 'bg-red-100 dark:bg-red-900/20',
+        textClass: 'text-red-700 dark:text-red-400',
         text: 'Cancelled',
       },
     };
@@ -108,7 +113,7 @@ export default function OrderManagement() {
 
     return (
       <span
-        className={`inline-flex items-center space-x-1 px-3 py-1 rounded-full text-xs bg-${badge.color}/20 text-${badge.color}`}
+        className={`inline-flex items-center space-x-1 px-3 py-1 rounded-full text-xs font-medium ${badge.bgClass} ${badge.textClass}`}
       >
         <Icon className="w-3 h-3" />
         <span>{badge.text}</span>
@@ -124,15 +129,15 @@ export default function OrderManagement() {
   };
 
   return (
-    <div className="space-y-md">
+    <div className="space-y-6">
       {/* Header */}
       <div>
-        <h2 className="text-heading-lg font-bold text-white">Order Management</h2>
-        <p className="text-text-secondary mt-xs">Manage customer orders</p>
+        <h2 className="text-2xl font-bold text-gray-900 dark:text-white">Order Management</h2>
+        <p className="text-gray-600 dark:text-gray-400 mt-1">Manage customer orders</p>
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-md">
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
         {[
           { label: 'All Orders', value: statusCounts.all, status: 'all' },
           { label: 'Pending', value: statusCounts.pending, status: 'pending' },
@@ -142,32 +147,32 @@ export default function OrderManagement() {
           <button
             key={stat.status}
             onClick={() => setStatusFilter(stat.status)}
-            className={`p-md rounded-lg border transition-all ${
+            className={`p-4 rounded-lg border transition-all ${
               statusFilter === stat.status
-                ? 'bg-primary/20 border-primary'
-                : 'bg-dark-card border-[#2a2a2a] hover:border-primary/50'
+                ? 'bg-blue-50 dark:bg-blue-900/20 border-blue-500'
+                : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 hover:border-blue-300'
             }`}
           >
-            <p className="text-text-secondary text-sm">{stat.label}</p>
-            <p className="text-white text-2xl font-bold mt-1">{stat.value}</p>
+            <p className="text-gray-600 dark:text-gray-400 text-sm">{stat.label}</p>
+            <p className="text-gray-900 dark:text-white text-2xl font-bold mt-1">{stat.value}</p>
           </button>
         ))}
       </div>
 
       {/* Search */}
-      <div className="bg-dark-card p-sm rounded-lg border border-[#2a2a2a]">
-        <div className="flex items-center space-x-sm">
+      <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+        <div className="flex items-center space-x-3">
           <input
             type="text"
             placeholder="Search by customer name, phone, or order ID..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             onKeyPress={(e) => e.key === 'Enter' && handleSearch()}
-            className="flex-1 px-sm py-xs bg-dark border border-[#2a2a2a] rounded-lg text-sm text-white focus:border-primary focus:outline-none"
+            className="flex-1 px-4 py-2 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg text-sm text-gray-900 dark:text-white focus:border-blue-500 focus:outline-none"
           />
           <button
             onClick={handleSearch}
-            className="px-md py-xs bg-primary text-dark font-bold rounded-lg text-sm hover:bg-primary/90 transition-colors"
+            className="px-6 py-2 bg-blue-600 text-white font-medium rounded-lg text-sm hover:bg-blue-700 transition-colors"
           >
             Search
           </button>
@@ -175,60 +180,60 @@ export default function OrderManagement() {
       </div>
 
       {/* Orders Table */}
-      <div className="bg-dark-card rounded-lg border border-[#2a2a2a] overflow-hidden">
+      <div className="bg-white dark:bg-gray-800 rounded-lg border border-gray-200 dark:border-gray-700 overflow-hidden">
         {loading ? (
-          <div className="p-8 text-center text-text-secondary">Loading...</div>
+          <div className="p-8 text-center text-gray-600 dark:text-gray-400">Loading...</div>
         ) : orders.length === 0 ? (
-          <div className="p-8 text-center text-text-secondary">No orders found</div>
+          <div className="p-8 text-center text-gray-600 dark:text-gray-400">No orders found</div>
         ) : (
           <div className="overflow-x-auto">
             <table className="w-full">
-              <thead className="bg-dark border-b border-[#2a2a2a]">
+              <thead className="bg-gray-50 dark:bg-gray-900 border-b border-gray-200 dark:border-gray-700">
                 <tr>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                     Order ID
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                     Customer
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                     Items
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                     Total
                   </th>
-                  <th className="px-6 py-3 text-left text-xs font-medium text-text-secondary uppercase tracking-wider">
+                  <th className="px-6 py-3 text-left text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                     Status
                   </th>
-                  <th className="px-6 py-3 text-right text-xs font-medium text-text-secondary uppercase tracking-wider">
+                  <th className="px-6 py-3 text-right text-xs font-medium text-gray-600 dark:text-gray-400 uppercase tracking-wider">
                     Actions
                   </th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[#2a2a2a]">
+              <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
                 {orders.map((order) => (
-                  <tr key={order._id} className="hover:bg-dark/50 transition-colors">
+                  <tr key={order._id} className="hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors">
                     <td className="px-6 py-4">
-                      <p className="text-white font-mono text-sm">#{order._id.slice(-8)}</p>
+                      <p className="text-gray-900 dark:text-white font-mono text-sm">#{order._id.slice(-8)}</p>
                     </td>
                     <td className="px-6 py-4">
                       <div>
-                        <p className="text-white font-medium">{order.customerName}</p>
-                        <p className="text-text-secondary text-sm">{order.phone}</p>
+                        <p className="text-gray-900 dark:text-white font-medium">{order.customerName}</p>
+                        <p className="text-gray-600 dark:text-gray-400 text-sm">{order.phone}</p>
                       </div>
                     </td>
                     <td className="px-6 py-4">
-                      <p className="text-text-secondary">{order.items.length} items</p>
+                      <p className="text-gray-600 dark:text-gray-400">{order.items.length} items</p>
                     </td>
                     <td className="px-6 py-4">
-                      <p className="text-primary font-bold">{formatPrice(order.totalPrice)}</p>
+                      <p className="text-blue-600 dark:text-blue-400 font-bold">{formatPrice(order.totalPrice)}</p>
                     </td>
                     <td className="px-6 py-4">{getStatusBadge(order.status)}</td>
                     <td className="px-6 py-4">
                       <div className="flex items-center justify-end space-x-2">
                         <button
                           onClick={() => handleViewOrder(order)}
-                          className="p-2 text-text-secondary hover:text-primary hover:bg-dark rounded-lg transition-colors"
+                          className="p-2 text-gray-600 dark:text-gray-400 hover:text-blue-600 hover:bg-blue-50 dark:hover:bg-blue-900/20 rounded-lg transition-colors"
                           title="View Details"
                         >
                           <Eye className="w-4 h-4" />
@@ -236,7 +241,7 @@ export default function OrderManagement() {
                         {order.status === 'pending' && (
                           <button
                             onClick={() => updateOrderStatus(order._id, 'paid')}
-                            className="px-3 py-1 text-xs bg-success/20 text-success rounded hover:bg-success/30 transition-colors"
+                            className="px-3 py-1 text-xs bg-green-100 dark:bg-green-900/20 text-green-700 dark:text-green-400 rounded hover:bg-green-200 dark:hover:bg-green-900/30 transition-colors font-medium"
                           >
                             Confirm
                           </button>
@@ -244,7 +249,7 @@ export default function OrderManagement() {
                         {order.status === 'paid' && (
                           <button
                             onClick={() => updateOrderStatus(order._id, 'shipped')}
-                            className="px-3 py-1 text-xs bg-primary/20 text-primary rounded hover:bg-primary/30 transition-colors"
+                            className="px-3 py-1 text-xs bg-blue-100 dark:bg-blue-900/20 text-blue-700 dark:text-blue-400 rounded hover:bg-blue-200 dark:hover:bg-blue-900/30 transition-colors font-medium"
                           >
                             Ship
                           </button>

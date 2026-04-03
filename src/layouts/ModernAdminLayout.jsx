@@ -42,22 +42,22 @@ const AdminLayout = () => {
   };
 
   return (
-    <div className="min-h-screen bg-admin-bg-primary dark:bg-gray-900 flex">
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex">
       {/* SIDEBAR DESKTOP */}
       <aside
-        className={`hidden lg:flex flex-col border-r border-admin-border-DEFAULT dark:border-gray-700 bg-admin-bg-card dark:bg-gray-800 transition-all duration-300 shadow-sm
+        className={`hidden lg:flex flex-col border-r border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 transition-all duration-300 shadow-sm
         ${sidebarOpen ? 'w-64' : 'w-20'}`}
       >
         {/* LOGO */}
-        <div className="h-16 flex items-center gap-3 px-4 border-b border-admin-border-DEFAULT dark:border-gray-700">
-          <div className="w-10 h-10 bg-primary rounded-xl flex items-center justify-center shadow-sm">
+        <div className="h-16 flex items-center gap-3 px-4 border-b border-gray-200 dark:border-gray-700">
+          <div className="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center shadow-sm">
             <span className="text-white font-bold text-lg">N</span>
           </div>
 
           {sidebarOpen && (
             <div>
-              <h1 className="font-bold text-admin-text-primary dark:text-white">NEO FIGURE</h1>
-              <p className="text-xs text-admin-text-secondary dark:text-gray-400">Admin Panel</p>
+              <h1 className="font-bold text-gray-900 dark:text-white">NEO FIGURE</h1>
+              <p className="text-xs text-gray-600 dark:text-gray-400">Admin Panel</p>
             </div>
           )}
         </div>
@@ -71,8 +71,8 @@ const AdminLayout = () => {
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all font-medium
               ${
                 isActive(item.path)
-                  ? 'bg-primary text-white shadow-md'
-                  : 'text-admin-text-secondary dark:text-gray-400 hover:bg-admin-bg-hover dark:hover:bg-gray-700 hover:text-admin-text-primary dark:hover:text-white'
+                  ? 'bg-blue-600 text-white shadow-md'
+                  : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white'
               }`}
             >
               <item.icon size={18} />
@@ -82,8 +82,15 @@ const AdminLayout = () => {
         </nav>
 
         {/* LOGOUT */}
-        <div className="p-4 border-t border-admin-border-DEFAULT dark:border-gray-700">
-          <button className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all font-medium">
+        <div className="p-4 border-t border-gray-200 dark:border-gray-700">
+          <button
+            onClick={() => {
+              localStorage.removeItem('token');
+              localStorage.removeItem('user');
+              navigate('/admin/login');
+            }}
+            className="w-full flex items-center gap-3 px-4 py-3 rounded-lg text-red-600 hover:bg-red-50 dark:hover:bg-red-900/20 transition-all font-medium"
+          >
             <LogOut size={18} />
             {sidebarOpen && <span className="text-sm">Logout</span>}
           </button>
@@ -93,24 +100,24 @@ const AdminLayout = () => {
       {/* MAIN AREA */}
       <div className="flex-1 flex flex-col min-w-0">
         {/* TOP NAVBAR */}
-        <nav className="h-16 flex items-center justify-between px-6 border-b border-admin-border-DEFAULT dark:border-gray-700 bg-admin-bg-card dark:bg-gray-800 shadow-sm">
+        <nav className="h-16 flex items-center justify-between px-6 border-b border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-800 shadow-sm">
           {/* LEFT */}
           <div className="flex items-center gap-3">
             {/* Toggle sidebar */}
             <button
               onClick={() => setSidebarOpen(!sidebarOpen)}
-              className="hidden lg:block p-2 hover:bg-admin-bg-hover dark:hover:bg-gray-700 rounded-lg transition-colors"
+              className="hidden lg:block p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
               title={sidebarOpen ? 'Collapse sidebar' : 'Expand sidebar'}
             >
-              <Menu size={20} className="text-admin-text-secondary dark:text-gray-400" />
+              <Menu size={20} className="text-gray-600 dark:text-gray-400" />
             </button>
 
             {/* Mobile menu */}
             <button
               onClick={() => setMobileMenuOpen(true)}
-              className="lg:hidden p-2 hover:bg-admin-bg-hover dark:hover:bg-gray-700 rounded-lg transition-colors"
+              className="lg:hidden p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
             >
-              <Menu size={20} className="text-admin-text-secondary dark:text-gray-400" />
+              <Menu size={20} className="text-gray-600 dark:text-gray-400" />
             </button>
           </div>
 
@@ -119,36 +126,36 @@ const AdminLayout = () => {
             {/* Theme Toggle */}
             <button
               onClick={toggleTheme}
-              className="p-2 hover:bg-admin-bg-hover dark:hover:bg-gray-700 rounded-lg transition-colors"
+              className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
               title={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
             >
               {isDark ? (
-                <Sun size={18} className="text-admin-text-secondary dark:text-gray-400" />
+                <Sun size={18} className="text-gray-600 dark:text-gray-400" />
               ) : (
-                <Moon size={18} className="text-admin-text-secondary dark:text-gray-400" />
+                <Moon size={18} className="text-gray-600 dark:text-gray-400" />
               )}
             </button>
 
             {/* Notification */}
-            <button className="relative p-2 hover:bg-admin-bg-hover dark:hover:bg-gray-700 rounded-lg transition-colors">
-              <Bell size={18} className="text-admin-text-secondary dark:text-gray-400" />
+            <button className="relative p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors">
+              <Bell size={18} className="text-gray-600 dark:text-gray-400" />
               <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-red-500 rounded-full ring-2 ring-white dark:ring-gray-800"></span>
             </button>
 
             {/* Profile */}
-            <div className="flex items-center gap-3 pl-3 border-l border-admin-border-DEFAULT dark:border-gray-700">
+            <div className="flex items-center gap-3 pl-3 border-l border-gray-200 dark:border-gray-700">
               <img
                 src="https://ui-avatars.com/api/?name=Admin&background=1677FF&color=fff"
                 alt="Admin"
-                className="w-8 h-8 rounded-full ring-2 ring-admin-border-DEFAULT dark:ring-gray-700"
+                className="w-8 h-8 rounded-full ring-2 ring-gray-200 dark:ring-gray-700"
               />
-              <ChevronDown size={16} className="text-admin-text-secondary dark:text-gray-400" />
+              <ChevronDown size={16} className="text-gray-600 dark:text-gray-400" />
             </div>
           </div>
         </nav>
 
         {/* PAGE CONTENT */}
-        <main className="flex-1 p-6 overflow-auto bg-admin-bg-primary dark:bg-gray-900">
+        <main className="flex-1 p-6 overflow-auto bg-gray-50 dark:bg-gray-900">
           <Outlet />
         </main>
       </div>
@@ -161,19 +168,19 @@ const AdminLayout = () => {
             onClick={() => setMobileMenuOpen(false)}
           />
 
-          <aside className="absolute left-0 top-0 bottom-0 w-64 bg-admin-bg-card dark:bg-gray-800 shadow-2xl">
-            <div className="h-16 flex items-center justify-between px-4 border-b border-admin-border-DEFAULT dark:border-gray-700">
+          <aside className="absolute left-0 top-0 bottom-0 w-64 bg-white dark:bg-gray-800 shadow-2xl">
+            <div className="h-16 flex items-center justify-between px-4 border-b border-gray-200 dark:border-gray-700">
               <div className="flex items-center gap-3">
-                <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
+                <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center">
                   <span className="text-white font-bold">N</span>
                 </div>
-                <span className="font-bold text-admin-text-primary dark:text-white">Menu</span>
+                <span className="font-bold text-gray-900 dark:text-white">Menu</span>
               </div>
               <button
                 onClick={() => setMobileMenuOpen(false)}
-                className="p-2 hover:bg-admin-bg-hover dark:hover:bg-gray-700 rounded-lg transition-colors"
+                className="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg transition-colors"
               >
-                <X size={20} className="text-admin-text-secondary dark:text-gray-400" />
+                <X size={20} className="text-gray-600 dark:text-gray-400" />
               </button>
             </div>
 
@@ -188,8 +195,8 @@ const AdminLayout = () => {
                   className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-all font-medium
                   ${
                     isActive(item.path)
-                      ? 'bg-primary text-white'
-                      : 'text-admin-text-secondary dark:text-gray-400 hover:bg-admin-bg-hover dark:hover:bg-gray-700'
+                      ? 'bg-blue-600 text-white'
+                      : 'text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700'
                   }`}
                 >
                   <item.icon size={18} />

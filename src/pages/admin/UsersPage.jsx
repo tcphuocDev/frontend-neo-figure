@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import {
   UserPlus,
   Mail,
@@ -7,61 +7,79 @@ import {
   Edit,
   Trash2,
   MoreVertical,
+  Search,
 } from 'lucide-react';
 import DataTable from '../../components/admin/DataTable';
 import Modal from '../../components/admin/Modal';
 import { formatDate } from '../../utils/adminUtils';
+import { adminApi } from '../../services/adminApi';
 
 const UsersPage = () => {
-  const [users, setUsers] = useState([
-    {
-      id: 1,
-      name: 'Nguyễn Văn A',
-      email: 'nguyenvana@example.com',
-      phone: '0901234567',
-      role: 'customer',
-      status: 'active',
-      orders: 12,
-      totalSpent: 15600000,
-      joined: '2025-12-15T10:00:00',
-    },
-    {
-      id: 2,
-      name: 'Trần Thị B',
-      email: 'tranthib@example.com',
-      phone: '0912345678',
-      role: 'customer',
-      status: 'active',
-      orders: 8,
-      totalSpent: 9200000,
-      joined: '2026-01-20T14:30:00',
-    },
-    {
-      id: 3,
-      name: 'Lê Minh C',
-      email: 'leminhc@example.com',
-      phone: '0923456789',
-      role: 'admin',
-      status: 'active',
-      orders: 0,
-      totalSpent: 0,
-      joined: '2025-11-01T09:00:00',
-    },
-    {
-      id: 4,
-      name: 'Phạm Thị D',
-      email: 'phamthid@example.com',
-      phone: '0934567890',
-      role: 'customer',
-      status: 'inactive',
-      orders: 3,
-      totalSpent: 4100000,
-      joined: '2026-02-10T16:45:00',
-    },
-  ]);
-
+  const [users, setUsers] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [searchTerm, setSearchTerm] = useState('');
+  const [roleFilter, setRoleFilter] = useState('all');
+  const [statusFilter, setStatusFilter] = useState('all');
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingUser, setEditingUser] = useState(null);
+
+  useEffect(() => {
+    fetchUsers();
+  }, []);
+
+  const fetchUsers = async () => {
+    try {
+      setLoading(true);
+      const { data } = await adminApi.getUsers();
+      setUsers(data);
+    } catch (error) {
+      console.error('Error fetching users:', error);
+      // Fallback to demo data if API fails
+      setUsers([
+        {
+          _id: '1',
+          name: 'Nguyễn Văn A',
+          email: 'nguyenvana@example.com',
+          phone: '0901234567',
+          role: 'customer',
+          status: 'active',
+          createdAt: '2025-12-15T10:00:00',
+        },
+        {
+          _id: '2',
+          name: 'Trần Thị B',
+          email: 'tranthib@example.com',
+          phone: '0912345678',
+          role: 'customer',
+          status: 'active',
+          createdAt: '2026-01-20T14:30:00',
+        },
+        {
+          _id: '3',
+          name: 'Lê Minh C',
+          email: 'leminhc@example.com',
+          phone: '0923456789',
+          role: 'admin',
+          status: 'active',
+          createdAt: '2025-11-01T09:00:00',
+        },
+      ]);
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const filteredUsers = users.filter((user) => {
+    const matchesSearch =
+      user.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user.phone?.includes(searchTerm);
+
+    const matchesRole = roleFilter === 'all' || user.role === roleFilter;
+    const matchesStatus = statusFilter === 'all' || user.status === statusFilter;
+
+    return matchesSearch && matchesRole && matchesStatus;
+  });
 
   const getRoleBadge = (role) => {
     const styles = {
@@ -137,26 +155,7 @@ const UsersPage = () => {
       render: (value) => getStatusBadge(value),
     },
     {
-      key: 'orders',
-      label: 'Orders',
-      sortable: true,
-      render: (value) => <span className="font-semibold">{value}</span>,
-    },
-    {
-      key: 'totalSpent',
-      label: 'Total Spent',
-      sortable: true,
-      render: (value) => (
-        <span className="font-semibold text-success">
-          {new Intl.NumberFormat('vi-VN', {
-            style: 'currency',
-            currency: 'VND',
-          }).format(value)}
-        </span>
-      ),
-    },
-    {
-      key: 'joined',
+      key: 'createdAt',
       label: 'Joined',
       sortable: true,
       render: (value) => formatDate(value),
@@ -180,7 +179,7 @@ const UsersPage = () => {
             onClick={(e) => {
               e.stopPropagation();
               if (confirm(`Delete user ${row.name}?`)) {
-                setUsers(users.filter((u) => u.id !== row.id));
+                setUsers(users.filter((u) => u._id !== row._id));
               }
             }}
             className="p-2 hover:bg-error/10 rounded-lg transition-colors"
@@ -272,12 +271,50 @@ const UsersPage = () => {
         </div>
       </div>
 
+      {/* Search & Filters */}
+      <div className="bg-white dark:bg-gray-800 p-4 rounded-lg border border-gray-200 dark:border-gray-700">
+        <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+          <div className="md:col-span-2">
+            <div className="relative">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
+              <input
+                type="text"
+                placeholder="Search by name, email, or phone..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="w-full pl-10 pr-4 py-2 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white focus:border-blue-500 focus:outline-none"
+              />
+            </div>
+          </div>
+
+          <select
+            value={roleFilter}
+            onChange={(e) => setRoleFilter(e.target.value)}
+            className="px-4 py-2 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white focus:border-blue-500 focus:outline-none"
+          >
+            <option value="all">All Roles</option>
+            <option value="admin">Admin</option>
+            <option value="customer">Customer</option>
+          </select>
+
+          <select
+            value={statusFilter}
+            onChange={(e) => setStatusFilter(e.target.value)}
+            className="px-4 py-2 bg-gray-50 dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg text-gray-900 dark:text-white focus:border-blue-500 focus:outline-none"
+          >
+            <option value="all">All Status</option>
+            <option value="active">Active</option>
+            <option value="inactive">Inactive</option>
+          </select>
+        </div>
+      </div>
+
       {/* Users Table */}
       <DataTable
-        data={users}
+        data={filteredUsers}
         columns={columns}
-        searchable={true}
-        filterable={true}
+        searchable={false}
+        filterable={false}
       />
 
       {/* User Form Modal */}

@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ShoppingCart, Search, Menu, X, ChevronDown, User, LogOut, Settings } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
@@ -6,6 +6,7 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Header() {
+  const navigate = useNavigate();
   const { getCartCount } = useCart();
   const { user, logout } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
@@ -172,7 +173,7 @@ a               le-110 transition-transform"
                       <button
                         onClick={() => {
                           setUserMenuOpen(false);
-                          // Navigate to profile page
+                          navigate('/profile');
                         }}
                         className="w-full flex items-center gap-sm px-md py-sm text-body text-text-secondary hover:text-primary hover:bg-dark-hover transition-colors"
                       >
@@ -328,7 +329,7 @@ a               le-110 transition-transform"
                     </div>
                     <button
                       onClick={() => {
-                        // Navigate to profile
+                        navigate('/profile');
                         setMobileMenuOpen(false);
                       }}
                       className="w-full flex items-center gap-sm py-sm text-body text-text-secondary hover:text-primary transition-colors"
