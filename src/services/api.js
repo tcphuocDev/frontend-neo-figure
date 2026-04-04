@@ -1,8 +1,11 @@
 import axios from "axios";
 
 export const api = axios.create({
-  // baseURL: "http://10.1.56.60:3009",
   baseURL: import.meta.env.VITE_API_URL,
+  timeout: 15000, // 15s timeout
+  headers: {
+    'Content-Type': 'application/json',
+  },
 });
 
 // Add request interceptor to attach token to all requests
@@ -23,12 +26,29 @@ api.interceptors.request.use(
 api.interceptors.response.use(
   (response) => response,
   (error) => {
+    // Network error or timeout
+    if (!error.response) {
+      console.error('❌ Network Error:', error.message);
+      if (error.code === 'ECONNABORTED') {
+        error.message = 'Request timeout. Please check your connection.';
+      } else if (error.code === 'ERR_NETWORK') {
+        error.message = 'Cannot connect to server. Please try again later.';
+      }
+    }
+
+    // Handle specific status codes
     if (error.response?.status === 401) {
       // Token expired or invalid
       localStorage.removeItem("token");
       localStorage.removeItem("user");
       window.location.href = "/auth";
+    } else if (error.response?.status === 403) {
+      console.error('❌ Access denied');
+    } else if (error.response?.status >= 500) {
+      console.error('❌ Server error:', error.response.status);
+      error.message = 'Server error. Please try again later.';
     }
+
     return Promise.reject(error);
   }
 );
