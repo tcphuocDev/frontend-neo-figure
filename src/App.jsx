@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { AuthProvider } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext.jsx';
 import { warmupApi } from './services/apiWarmup';
+import ConnectionStatus from './components/ConnectionStatus';
 import Home from './pages/Home';
 import ProductList from './pages/ProductList';
 import ProductDetail from './pages/ProductDetail';
@@ -60,6 +61,7 @@ export default function App() {
 
   return (
     <BrowserRouter>
+      <ConnectionStatus />
       <ThemeProvider>
         <AuthProvider>
           <Routes>
