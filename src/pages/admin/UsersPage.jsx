@@ -71,17 +71,19 @@ const UsersPage = () => {
 
   const filteredUsers = users.filter((user) => {
     const matchesSearch =
-      user.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      user.phone?.includes(searchTerm);
+      user?.name?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user?.email?.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      user?.phone?.includes(searchTerm);
 
-    const matchesRole = roleFilter === 'all' || user.role === roleFilter;
-    const matchesStatus = statusFilter === 'all' || user.status === statusFilter;
+    const matchesRole = roleFilter === 'all' || user?.role === roleFilter;
+    const matchesStatus = statusFilter === 'all' || user?.status === statusFilter;
 
     return matchesSearch && matchesRole && matchesStatus;
   });
 
   const getRoleBadge = (role) => {
+    if (!role) return <span className="text-text-secondary">N/A</span>;
+
     const styles = {
       admin: 'bg-purple-500/10 text-purple-600',
       customer: 'bg-primary-light text-primary',
@@ -89,7 +91,7 @@ const UsersPage = () => {
 
     return (
       <span
-        className={`px-sm py-xs rounded-full text-body font-medium ${styles[role]}`}
+        className={`px-sm py-xs rounded-full text-body font-medium ${styles[role] || 'bg-gray-500/10 text-gray-600'}`}
       >
         {role.charAt(0).toUpperCase() + role.slice(1)}
       </span>
@@ -97,6 +99,8 @@ const UsersPage = () => {
   };
 
   const getStatusBadge = (status) => {
+    if (!status) return <span className="text-text-secondary">N/A</span>;
+
     const styles = {
       active: 'bg-success/10 text-success',
       inactive: 'bg-text-secondary/10 text-text-secondary',
@@ -104,7 +108,7 @@ const UsersPage = () => {
 
     return (
       <span
-        className={`px-sm py-xs rounded-full text-body font-medium ${styles[status]}`}
+        className={`px-sm py-xs rounded-full text-body font-medium ${styles[status] || 'bg-gray-500/10 text-gray-600'}`}
       >
         {status.charAt(0).toUpperCase() + status.slice(1)}
       </span>
@@ -119,16 +123,16 @@ const UsersPage = () => {
       render: (value, row) => (
         <div className="flex items-center gap-3">
           <img
-            src={`https://ui-avatars.com/api/?name=${encodeURIComponent(value)}&background=1677FF&color=fff`}
-            alt={value}
+            src={`https://ui-avatars.com/api/?name=${encodeURIComponent(value || 'User')}&background=1677FF&color=fff`}
+            alt={value || 'User'}
             className="w-10 h-10 rounded-full"
           />
           <div>
             <p className="font-medium text-text-primary dark:text-white">
-              {value}
+              {value || 'No Name'}
             </p>
             <p className="text-sm text-text-secondary dark:text-gray-400">
-              {row.email}
+              {row.email || 'No Email'}
             </p>
           </div>
         </div>
@@ -140,7 +144,7 @@ const UsersPage = () => {
       render: (value) => (
         <div className="flex items-center gap-2 text-text-primary dark:text-gray-300">
           <Phone className="w-4 h-4 text-text-secondary" />
-          {value}
+          {value || 'N/A'}
         </div>
       ),
     },
@@ -167,7 +171,7 @@ const UsersPage = () => {
         <div className="flex items-center gap-2">
           <button
             onClick={(e) => {
-              e.stopPropagation();
+              e?.stopPropagation();
               setEditingUser(row);
               setIsModalOpen(true);
             }}
@@ -177,9 +181,9 @@ const UsersPage = () => {
           </button>
           <button
             onClick={(e) => {
-              e.stopPropagation();
-              if (confirm(`Delete user ${row.name}?`)) {
-                setUsers(users.filter((u) => u._id !== row._id));
+              e?.stopPropagation();
+              if (confirm(`Delete user ${row?.name || 'this user'}?`)) {
+                setUsers(users.filter((u) => u?._id !== row?._id));
               }
             }}
             className="p-2 hover:bg-error/10 rounded-lg transition-colors"
@@ -227,7 +231,7 @@ const UsersPage = () => {
             </p>
           </div>
           <p className="text-2xl font-bold text-gray-900 dark:text-white">
-            {users.length}
+            {users?.length || 0}
           </p>
         </div>
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
@@ -240,7 +244,7 @@ const UsersPage = () => {
             </p>
           </div>
           <p className="text-2xl font-bold text-gray-900 dark:text-white">
-            {users.filter((u) => u.status === 'active').length}
+            {users.filter((u) => u?.status === 'active').length}
           </p>
         </div>
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
@@ -253,7 +257,7 @@ const UsersPage = () => {
             </p>
           </div>
           <p className="text-2xl font-bold text-gray-900 dark:text-white">
-            {users.filter((u) => u.role === 'admin').length}
+            {users.filter((u) => u?.role === 'admin').length}
           </p>
         </div>
         <div className="bg-white dark:bg-gray-800 rounded-xl shadow-sm border border-gray-100 dark:border-gray-700 p-6">
@@ -266,7 +270,7 @@ const UsersPage = () => {
             </p>
           </div>
           <p className="text-2xl font-bold text-gray-900 dark:text-white">
-            {users.filter((u) => u.role === 'customer').length}
+            {users.filter((u) => u?.role === 'customer').length}
           </p>
         </div>
       </div>
@@ -311,7 +315,7 @@ const UsersPage = () => {
 
       {/* Users Table */}
       <DataTable
-        data={filteredUsers}
+        data={filteredUsers || []}
         columns={columns}
         searchable={false}
         filterable={false}
