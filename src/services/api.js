@@ -8,6 +8,10 @@ export const api = axios.create({
   },
 });
 
+// Retry configuration
+const MAX_RETRIES = 3;
+const RETRY_DELAY = 1000; // 1 second
+
 // Add request interceptor to attach token to all requests
 api.interceptors.request.use(
   (config) => {
@@ -15,6 +19,10 @@ api.interceptors.request.use(
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
     }
+
+    // Initialize retry count
+    config.retryCount = config.retryCount || 0;
+
     return config;
   },
   (error) => {
@@ -22,27 +30,50 @@ api.interceptors.request.use(
   }
 );
 
-// Add response interceptor to handle errors
+// Add response interceptor to handle errors with retry
 api.interceptors.response.use(
   (response) => response,
-  (error) => {
+  async (error) => {
+    const config = error.config;
+
+    // Check if we should retry
+    const shouldRetry =
+      !config ||
+      !config.retryCount ||
+      config.retryCount < MAX_RETRIES;
+
+    const isRetryableError =
+      error.code === 'ERR_NETWORK' ||
+      error.code === 'ECONNREFUSED' ||
+      error.code === 'ERR_CONNECTION_REFUSED' ||
+      error.code === 'ECONNABORTED' ||
+      (error.response && [500, 502, 503, 504].includes(error.response.status));
+
+    // Retry logic
+    if (shouldRetry && isRetryableError && config) {
+      config.retryCount = (config.retryCount || 0) + 1;
+
+      console.warn(
+        `⚠️  API call failed (attempt ${config.retryCount}/${MAX_RETRIES}), retrying...`,
+        error.message
+      );
+
+      // Wait before retry with exponential backoff
+      await new Promise(resolve =>
+        setTimeout(resolve, RETRY_DELAY * Math.pow(1.5, config.retryCount - 1))
+      );
+
+      // Retry the request
+      return api(config);
+    }
+
     // Network error or timeout
     if (!error.response) {
       console.error('❌ Network Error:', error.message);
       if (error.code === 'ECONNABORTED') {
         error.message = 'Request timeout. Please check your connection.';
-      } else if (error.code === 'ERR_NETWORK') {
-        error.message = 'Cannot connect to server. Please try again later.';
-      }
-    }
-
-    // Handle specific status codes
-    if (error.response?.status === 401) {
-      // Token expired or invalid
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
-      window.location.href = "/auth";
-    } else if (error.response?.status === 403) {
+      } else if (error.code === 'ERR_NETWORK' || error.code === 'ECONNREFUSED') {
+        error.message = 'Cannot connect to server. Please check if backend is running.';
       console.error('❌ Access denied');
     } else if (error.response?.status >= 500) {
       console.error('❌ Server error:', error.response.status);

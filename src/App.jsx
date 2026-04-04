@@ -1,6 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { AuthProvider } from './context/AuthContext';
 import { ThemeProvider } from './context/ThemeContext.jsx';
+import { warmupApi } from './services/apiWarmup';
 import Home from './pages/Home';
 import ProductList from './pages/ProductList';
 import ProductDetail from './pages/ProductDetail';
@@ -25,6 +27,37 @@ import ReportsPage from './pages/admin/ReportsPage';
 import SettingsPage from './pages/admin/SettingsPage';
 
 export default function App() {
+  const [apiReady, setApiReady] = useState(false);
+  const [warmupFailed, setWarmupFailed] = useState(false);
+
+  useEffect(() => {
+    // Warm up API connection on app start
+    const initApi = async () => {
+      const isReady = await warmupApi(3); // Try 3 times
+      setApiReady(true);
+
+      if (!isReady) {
+        setWarmupFailed(true);
+        console.warn('⚠️  API warmup failed, but app will continue');
+      }
+    };
+
+    initApi();
+  }, []);
+
+  // Show loading only for first 2 seconds, then show app anyway
+  if (!apiReady) {
+    return (
+      <div className="min-h-screen bg-dark flex items-center justify-center">
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-b-2 border-primary mb-4"></div>
+          <p className="text-white text-lg">Connecting to server...</p>
+          <p className="text-gray-400 text-sm mt-2">Please wait a moment</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <BrowserRouter>
       <ThemeProvider>
