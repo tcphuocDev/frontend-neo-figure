@@ -3,35 +3,56 @@ import { api } from './api';
 /**
  * Warm up API by checking health endpoint
  * Retry multiple times with exponential backoff
+ * Fallback to other endpoints if /health not available
  */
 export const warmupApi = async (maxRetries = 5) => {
   console.log('🔥 Warming up API connection...');
 
+  // Try different endpoints in order
+  const endpoints = [
+    '/health',
+    '/api/health',
+    '/', // Root endpoint should always exist
+  ];
+
   for (let i = 0; i < maxRetries; i++) {
-    try {
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 3000); // 3s timeout
+    for (const endpoint of endpoints) {
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 5000); // 5s timeout
 
-      await fetch(`${import.meta.env.VITE_API_URL}/health`, {
-        signal: controller.signal,
-        method: 'GET',
-      });
+        const response = await fetch(`${import.meta.env.VITE_API_URL}${endpoint}`, {
+          signal: controller.signal,
+          method: 'GET',
+          headers: {
+            'Accept': 'application/json',
+          },
+        });
 
-      clearTimeout(timeoutId);
-      console.log('✅ API connection established');
-      return true;
-    } catch (error) {
-      console.warn(`⚠️  Warmup attempt ${i + 1}/${maxRetries} failed:`, error.message);
+        clearTimeout(timeoutId);
 
-      if (i === maxRetries - 1) {
-        console.error('❌ API warmup failed after all retries');
-        return false;
+        if (response.ok || response.status === 404) {
+          // 404 means server is running but endpoint not found
+          // That's still better than connection refused
+          console.log(`✅ API connection established via ${endpoint}`);
+          return true;
+        }
+      } catch (error) {
+        // Try next endpoint
+        continue;
       }
-
-      // Exponential backoff: 500ms, 1s, 2s, 4s, 8s
-      const delay = 500 * Math.pow(2, i);
-      await new Promise(resolve => setTimeout(resolve, delay));
     }
+
+    console.warn(`⚠️  Warmup attempt ${i + 1}/${maxRetries} failed on all endpoints`);
+
+    if (i === maxRetries - 1) {
+      console.error('❌ API warmup failed after all retries');
+      return false;
+    }
+
+    // Exponential backoff: 1s, 2s, 4s, 8s, 16s
+    const delay = 1000 * Math.pow(2, i);
+    await new Promise(resolve => setTimeout(resolve, delay));
   }
 
   return false;

@@ -50,7 +50,7 @@ function recordSuccess() {
 function recordFailure() {
   failureCount++;
   lastFailureTime = Date.now();
-  
+
   if (failureCount >= FAILURE_THRESHOLD && circuitBreakerState !== 'OPEN') {
     console.error('⛔ Circuit breaker OPEN - too many failures');
     circuitBreakerState = 'OPEN';
@@ -66,7 +66,7 @@ api.interceptors.request.use(
     } catch (error) {
       return Promise.reject(error);
     }
-    
+
     const token = localStorage.getItem("token");
     if (token) {
       config.headers.Authorization = `Bearer ${token}`;
@@ -75,7 +75,7 @@ api.interceptors.request.use(
     // Initialize retry count
     config.retryCount = config.retryCount || 0;
     config.startTime = Date.now(); // Để track request time
-    
+
     return config;
   },
   (error) => {
@@ -88,18 +88,18 @@ api.interceptors.response.use(
   (response) => {
     // Request thành công - reset circuit breaker
     recordSuccess();
-    
+
     // Log slow requests
     const duration = Date.now() - (response.config.startTime || Date.now());
     if (duration > 5000) {
       console.warn(`⚠️  Slow request: ${response.config.url} took ${duration}ms`);
     }
-    
+
     return response;
   },
   async (error) => {
     const config = error.config;
-    
+
     // Không retry nếu circuit breaker OPEN
     if (circuitBreakerState === 'OPEN') {
       return Promise.reject(new Error('Service temporarily unavailable'));
@@ -122,7 +122,7 @@ api.interceptors.response.use(
     // Retry logic
     if (shouldRetry && isRetryableError) {
       config.retryCount = (config.retryCount || 0) + 1;
-      
+
       // Calculate delay với exponential backoff + jitter
       const exponentialDelay = Math.min(
         RETRY_DELAY * Math.pow(2, config.retryCount - 1),
@@ -143,12 +143,12 @@ api.interceptors.response.use(
       // Retry the request
       return api(config);
     }
-    
+
     // Record failure cho circuit breaker
     if (isRetryableError) {
       recordFailure();
     }
-    
+
     // Network error or timeout
     if (!error.response) {
       console.error('❌ Network Error:', error.message);
@@ -160,7 +160,7 @@ api.interceptors.response.use(
         error.message = 'Server sent empty response. Backend might be restarting.';
       }
     }
-    
+
     // Handle specific status codes
     if (error.response?.status === 401) {
       // Token expired or invalid
