@@ -64,7 +64,7 @@ export default function Auth() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-[#0a0a0f] via-[#1a0a2e] to-[#0f051d] px-4 relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 via-blue-50 to-purple-50 dark:from-[#0a0a0f] dark:via-[#1a0a2e] dark:to-[#0f051d] px-4 relative overflow-hidden">
       {/* Animated Background Gradient Orbs */}
       <motion.div
         animate={{

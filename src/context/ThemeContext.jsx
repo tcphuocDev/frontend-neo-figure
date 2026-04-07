@@ -8,6 +8,9 @@ export const ThemeProvider = ({ children }) => {
   });
 
   useEffect(() => {
+    // Add no-transition class temporarily to prevent jarring transitions
+    document.documentElement.classList.add('no-transition');
+    
     if (isDark) {
       document.documentElement.classList.add('dark');
       localStorage.setItem('theme', 'dark');
@@ -15,6 +18,11 @@ export const ThemeProvider = ({ children }) => {
       document.documentElement.classList.remove('dark');
       localStorage.setItem('theme', 'light');
     }
+    
+    // Remove no-transition class after a brief delay
+    setTimeout(() => {
+      document.documentElement.classList.remove('no-transition');
+    }, 50);
   }, [isDark]);
 
   const toggleTheme = () => setIsDark(!isDark);

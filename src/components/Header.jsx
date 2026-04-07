@@ -1,7 +1,8 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { ShoppingCart, Search, Menu, X, ChevronDown, User, LogOut, Settings } from 'lucide-react';
+import { ShoppingCart, Search, Menu, X, ChevronDown, User, LogOut, Settings, Sun, Moon } from 'lucide-react';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
+import { useTheme } from '../hooks/useTheme';
 import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
@@ -9,6 +10,7 @@ export default function Header() {
   const navigate = useNavigate();
   const { getCartCount } = useCart();
   const { user, logout } = useAuth();
+  const { isDark, toggleTheme } = useTheme();
   const [searchQuery, setSearchQuery] = useState('');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [searchFocused, setSearchFocused] = useState(false);
@@ -111,6 +113,19 @@ export default function Header() {
               <span className="text-base">🔥</span>
               Hot Deals
             </Link>
+
+            {/* Theme Toggle */}
+            <button
+              onClick={toggleTheme}
+              className="p-xs hover:bg-dark-hover rounded-lg transition-colors group"
+              aria-label="Toggle theme"
+            >
+              {isDark ? (
+                <Sun className="w-5 h-5 text-primary group-hover:rotate-45 transition-transform duration-300" />
+              ) : (
+                <Moon className="w-5 h-5 text-primary group-hover:-rotate-12 transition-transform duration-300" />
+              )}
+            </button>
 
             {/* Cart Icon */}
             <Link
